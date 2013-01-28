@@ -14,10 +14,14 @@ public class Flight implements IEntity {
 	private String price;
 	private int availableSeats;
 	
+	public Flight( Entity e ) {
+		this.init(e);
+	}
+	
 	@Override
 	public void init(Entity e) {
 		this.key = e.getKey();
-		this.dateDepart = (Date) e.getProperty("date");
+		this.dateDepart = (Date) e.getProperty("dateDepart");
 		this.dateArrivee = (Date) e.getProperty("dateArrivee");
 		this.from = (String) e.getProperty("from");
 		this.to = (String) e.getProperty("to");
