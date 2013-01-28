@@ -30,7 +30,7 @@
 						<input type="text" id="departing" class="datepicker" placeholder="Departing">
 					</div>
 					<div class="control-group">
-						<input type="text" id="arrivalTime" placeholder="Arrival Time">
+						<input type="text" id="arrivalTime" class="datepicker" placeholder="Arrival Time">
 					</div>
 				</div>
 				<div class="span3">
@@ -50,25 +50,21 @@
 		</form>		
 	
 	<span class="divider"></span>
-	
-	<div class="row-fluid">
-		<div class="span10 offset1">
-			<table class="table table-striped table-bordered">
-				<THEAD>
-			       <tr>
-			           <th>Date</th>
-			           <th>Departure Town</th>
-			           <th>Arrival Town</th>
-			           <th>Flight duration</th>
-			           <th>Available seats</th>
-			           <th>Price</th>
-			           <th></th>
-			       </tr>
-		   		</THEAD>
-		   		<TBODY>
-		   		</TBODY>
-			</table>
-		</div>
+		<table class="table table-striped table-bordered">
+			<THEAD>
+		       <tr>
+		           <th>Date</th>
+		           <th>Departure Town</th>
+		           <th>Arrival Town</th>
+		           <th>Flight duration</th>
+		           <th>Available seats</th>
+		           <th>Price</th>
+		           <th></th>
+		       </tr>
+	   		</THEAD>
+	   		<TBODY>
+	   		</TBODY>
+		</table>
 	</div>
 	<script>
 	  $(function() {
