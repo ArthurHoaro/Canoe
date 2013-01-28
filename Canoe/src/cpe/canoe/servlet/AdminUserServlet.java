@@ -32,7 +32,12 @@ public class AdminUserServlet extends HttpServlet {
 			for ( Entity user : pq.asIterable() ) {
 				listUsers.add(user);
 			}
-			resp.sendRedirect("/admin/users.jsp");
+			try {
+				req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else
 			resp.sendRedirect(UserServiceFactory.getUserService().createLoginURL(req.getRequestURI()));

@@ -7,8 +7,19 @@
   version="2.0">
 <z:layout pageTitle="Canoe - Administration - Utilisateurs">
     <table class="table">
-    	<c:forEach>
-    		
+    	<tr>
+    		<th>#</th>
+    		<th>Nom</th>
+    		<th>Inscription</th>
+    		<th>Dernière activité</th>
+    	</tr>
+    	<c:forEach var="user" items="${listUsers}">
+    		<tr>
+    			<td></td>
+    			<td>${user.name}</td>
+    			<td></td>
+    			<td></td>
+    		</tr>
     	</c:forEach>
     </table>
 </z:layout>
