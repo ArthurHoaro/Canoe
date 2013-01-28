@@ -4,7 +4,7 @@
 
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
 <z:layout pageTitle="Login">
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="/login" method="post">
     <div class="control-group">
     <label class="control-label" for="inputEmail">Email</label>
     <div class="controls">
@@ -22,7 +22,7 @@
     <label class="checkbox">
     <input type="checkbox"> Remember me
     </label>
-    <button type="submit" class="btn">Sign in</button>
+    <button type="submit" class="btn">Sign in</button>    
     </div>
     </div>
     </form>
