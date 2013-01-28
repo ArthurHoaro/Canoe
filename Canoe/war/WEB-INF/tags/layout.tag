@@ -5,25 +5,29 @@
 <head>
 <title>${pageTitle}</title>
 <!-- Bootstrap -->
-<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-	media="screen">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"	media="screen" />
 </head>
 <body>
 	<div class="navbar">
-		<div class="navbar-inner">
-			<a class="brand" href="/index.jsp">Title</a>
-			<ul class="nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
-			</ul>
-			<div class="nav pull-right">			
-				<a href="/auth/login.jsp" class="btn btn-success">Login</a>
-				<a href="/auth/register.jsp" class="btn btn-info">Register</a>			
+			<div class="navbar-inner">
+			<div class="container">		
+				<a class="brand" href="/index.jsp">Title</a>
+				<ul class="nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
+				<div class="nav pull-right">			
+					<a href="/auth/login.jsp" class="btn btn-success">Login</a>
+					<a href="/auth/register.jsp" class="btn btn-info">Register</a>			
+				</div>
+			</div>
 			</div>
 		</div>
 	</div>
-    <jsp:doBody/>
+	<div class="container">		
+    	<jsp:doBody/>
+    </div>
 <footer>
 	<div class="navbar navbar-fixed-bottom">
 	    <ul class="breadcrumb">
