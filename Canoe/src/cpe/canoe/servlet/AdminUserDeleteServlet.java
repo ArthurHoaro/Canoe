@@ -9,39 +9,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
 
 import cpe.canoe.model.IEntity;
 import cpe.canoe.model.User;
 import cpe.canoe.services.UserService;
 
-public class AdminUserServlet extends HttpServlet {
+public class AdminUserDeleteServlet extends HttpServlet {
 	private UserService uService;
-	private ArrayList<IEntity> listUsers;
-	
-	public AdminUserServlet() {
+		
+	public AdminUserDeleteServlet() {
 		uService = new UserService(); 
-		listUsers = new ArrayList<IEntity>();
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 		if( uService.isLoggedIn() ) {
-			listUsers = (ArrayList<IEntity>) uService.findAll();
-			
-			try {
-				req.setAttribute("listUsers", listUsers);
-				req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if( req.getParameter("queue") == "1" ) {
+				System.out.println("delete");
+				uService.remove(KeyFactory.stringToKey(req.getParameter("u")));
 			}
-		} else {
-			try {
-				req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			else {
+				if ( req.getParameter("u") != null ) {
+					Queue queue = QueueFactory.getQueue("delete-user");
+			        queue.add(TaskOptions.Builder.withUrl("/admin/delete").param("u", req.getParameter("u")).param("queue", "1"));
+				}
+				resp.sendRedirect("/admin/users");
 			}
 		}
 	}

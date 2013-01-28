@@ -4,9 +4,10 @@ import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class User implements IEntity {
-	private Key key;
+	private String key;
 	private String firstname;
 	private String lastname;
 	private String mail;
@@ -24,7 +25,7 @@ public class User implements IEntity {
 	
 	@Override
 	public void init(Entity e) {
-		this.key = e.getKey();
+		this.key = KeyFactory.keyToString(e.getKey());
 		this.firstname = (String) e.getProperty("firstname");
 		this.lastname = (String) e.getProperty("lastname");
 		this.mail = (String) e.getProperty("mail");
@@ -35,10 +36,22 @@ public class User implements IEntity {
 		this.lastLoginDate = (Date) e.getProperty("lastLoginDate");		
 	}
 	
-	public Key getKey() {
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+	public Date getLastLoginDate() {
+		return lastLoginDate;
+	}
+	public void setLastLoginDate(Date lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
+	}
+	public String getKey() {
 		return key;
 	}
-	public void setKey(Key key) {
+	public void setKey(String key) {
 		this.key = key;
 	}
 	public String getFirstname() {

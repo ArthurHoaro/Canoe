@@ -1,0 +1,10 @@
+<queue-entries>
+  <queue>
+    <name>delete-user</name>
+    <rate>1/s</rate>
+  </queue>
+  <queue>
+    <name>add-user</name>
+    <rate>1/s</rate>
+  </queue>
+</queue-entries>

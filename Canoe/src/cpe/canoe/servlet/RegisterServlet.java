@@ -41,8 +41,7 @@ public class RegisterServlet extends HttpServlet {
 		if (req.getParameter("pass").equals(req.getParameter("repass")))
 			usr.setPassword(req.getParameter("pass"));
 
-		usrService.addUser(usr);
-		System.out.println("apres add");
+		usrService.addUser(usr);		
 	}
 
 }

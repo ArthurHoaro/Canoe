@@ -5,8 +5,4 @@
 <z:layout pageTitle="Accueil">
     <p>Hello, JSP!</p>
 </z:layout>
-<%-- 
-<%@include file="template/header.html" %>
 
-
-<%@include file="template/footer.html" %> --%>

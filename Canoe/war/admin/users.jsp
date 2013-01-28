@@ -23,7 +23,7 @@
     		<tr>
     			<td></td>
     			<td>${user.username}</td>
-    			<td>${user.fistname} ${user.lastname}</td>
+    			<td>${user.firstname} ${user.lastname}</td>
     			<td>${user.registerDate}</td>
     			<td>${user.lastLoginDate}</td>
     			<td><a href="/admin/delete?u=${user.key}"><i class="icon-remove"></i></a></td>
