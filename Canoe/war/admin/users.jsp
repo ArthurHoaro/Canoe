@@ -6,6 +6,7 @@
   xmlns:c="http://java.sun.com/jsp/jstl/core"
   version="2.0">
 <z:layout pageTitle="Canoe - Administration - Utilisateurs">
+	<h1>Users</h1>
     <table class="table">
     	<tr>
     		<th>#</th>
