@@ -6,11 +6,9 @@
 <z:layout pageTitle="Canoe - Administration - Utilisateurs">
 	<h1>Users</h1>
     <table class="table">
-<<<<<<< HEAD
-    
-=======
     	<tr>
     		<th>#</th>
+    		<th>Nom d'utilisateur</th>
     		<th>Nom</th>
     		<th>Inscription</th>
     		<th>Dernière activité</th>
@@ -18,12 +16,16 @@
     	<c:forEach var="user" items="${listUsers}">
     		<tr>
     			<td></td>
-    			<td>${user.name}</td>
-    			<td></td>
-    			<td></td>
+    			<td>${user.username}</td>
+    			<td>${user.fistname} ${user.lastname}</td>
+    			<td>${user.registerDate}</td>
+    			<td>${user.lastLoginDate}</td>
     		</tr>
     	</c:forEach>
->>>>>>> c1b87aa94ce81ea35946520d32b2a7db06ba6965
     </table>
 </z:layout>
+<%-- 
+<%@include file="template/header.html" %>
 
+
+<%@include file="template/footer.html" %> --%>
