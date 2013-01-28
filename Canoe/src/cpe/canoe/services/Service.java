@@ -44,8 +44,23 @@ public abstract class Service {
 		return entities;
 	}
 	
-	public Entity findByKey(Key key) throws EntityNotFoundException {
-		return this.getDBInstance().get(key);
+	public IEntity findByKey(Key key) throws EntityNotFoundException {
+		Object obj = null;
+		try {
+			obj = Class.forName(this.entityName).newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		((IEntity) obj).init(this.getDBInstance().get(key));
+		return (IEntity) obj;
+		
 	}
 	
 	public final DatastoreService getDBInstance() {
