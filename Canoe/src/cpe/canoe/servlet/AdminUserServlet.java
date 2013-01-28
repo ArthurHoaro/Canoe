@@ -14,7 +14,7 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-import cpe.canoe.model.UserModel;
+import cpe.canoe.services.UserModel;
 
 public class AdminUserServlet extends HttpServlet {
 	private UserModel umodel;
@@ -32,10 +32,15 @@ public class AdminUserServlet extends HttpServlet {
 			for ( Entity user : pq.asIterable() ) {
 				listUsers.add(user);
 			}
-			resp.sendRedirect("/admin/users.jsp");
+			try {
+				req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else
-			resp.sendRedirect(UserServiceFactory.getUserService().createLoginURL(req.getRequestURI()));
+			resp.('/login');
 	}
 
 	@Override
