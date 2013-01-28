@@ -6,7 +6,7 @@
 <z:layout pageTitle="Gestion des vols">
 	<!-- Onglet Ajout ou Recherche -->
 	<ul class="nav nav-tabs">
-		<li>
+		<li class="active">
 			<a href="/flightAdmin/Ajout">Ajout</a>
 		</li>
 		<!-- Zone de recherche d'un vol -->
@@ -15,7 +15,7 @@
 		</li>
 	</ul>
 	
-	<form class="form-horizontal">
+	<form class="form-horizontal" action="/flightAdmin/Recherche" method="post">
 			<div class="row-fluid">
 				<div class="span3">
 					<div class="control-group">	
@@ -50,22 +50,22 @@
 		</form>		
 	
 	<span class="divider"></span>
-		<table class="table table-striped table-bordered">
-			<THEAD>
-		       <tr>
-		           <th>Date</th>
-		           <th>Departure Town</th>
-		           <th>Arrival Town</th>
-		           <th>Flight duration</th>
-		           <th>Available seats</th>
-		           <th>Price</th>
-		           <th></th>
-		       </tr>
-	   		</THEAD>
-	   		<TBODY>
-	   		</TBODY>
-		</table>
-	</div>
+	
+	<table class="table table-striped table-bordered">
+		<THEAD>
+	       <tr>
+	           <th>Date</th>
+	           <th>Departure Town</th>
+	           <th>Arrival Town</th>
+	           <th>Flight duration</th>
+	           <th>Available seats</th>
+	           <th>Price</th>
+	           <th></th>
+	       </tr>
+   		</THEAD>
+   		<TBODY>
+   		</TBODY>
+	</table>
 	<script>
 	  $(function() {
 	    $( ".datepicker" ).datepicker();

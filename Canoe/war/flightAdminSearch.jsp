@@ -10,33 +10,33 @@
 			<a href="/flightAdmin/Ajout">Ajout</a>
 		</li>
 		<!-- Zone de recherche d'un vol -->
-		<li>
+		<li class="active">
 			<a href="/flightAdmin/Recherche">Recherche</a>
 		</li>
 	</ul>
 	
-	<form class="form-horizontal">
-			<div class="row-fluid">
-				<div class="span3">
-				  <div class="control-group">
-				      <input type="text" id="leavingFrom" placeholder="Leaving From">
-				  </div>
-				  <div class="control-group">
-				      <input type="text" id="goingTo" placeholder="Going To">
-				  </div>
-				</div>
-				<div class="span3">
-					<div class="control-group">
-					      <input type="text" id="departing" class="datepicker" placeholder="Departing">
-				  	</div>
-				</div>
-				<div class="span3">
-					<div class="control-group">
-							<input type="submit" id="go" value="Go">
-					</div>
+	<form class="form-horizontal" action="/flightAdmin/Ajout" method="post">
+		<div class="row-fluid">
+			<div class="span3">
+			  <div class="control-group">
+			      <input type="text" id="leavingFrom" placeholder="Leaving From">
+			  </div>
+			  <div class="control-group">
+			      <input type="text" id="goingTo" placeholder="Going To">
+			  </div>
+			</div>
+			<div class="span3">
+				<div class="control-group">
+				      <input type="text" id="departing" class="datepicker" placeholder="Departing">
+			  	</div>
+			</div>
+			<div class="span3">
+				<div class="control-group">
+						<input type="submit" id="go" value="Go">
 				</div>
 			</div>
-		</form>		
+		</div>
+	</form>		
 	
 	<span class="divider"></span>
 	
@@ -55,7 +55,7 @@
    		<TBODY>
    		</TBODY>
 	</table>
-	</div>
+	
 	<script>
 	  $(function() {
 	    $( ".datepicker" ).datepicker();
