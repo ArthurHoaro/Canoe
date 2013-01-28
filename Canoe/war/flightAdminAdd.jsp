@@ -27,7 +27,7 @@
 				</div>
 				<div class="span3">
 					<div class="control-group">
-						<input type="text" id="departing" placeholder="Departing">
+						<input type="text" id="departing" class="datepicker" placeholder="Departing">
 					</div>
 					<div class="control-group">
 						<input type="text" id="arrivalTime" placeholder="Arrival Time">
@@ -70,4 +70,9 @@
 			</table>
 		</div>
 	</div>
+	<script>
+	  $(function() {
+	    $( ".datepicker" ).datepicker();
+	  });
+  	</script>
 </z:layout>

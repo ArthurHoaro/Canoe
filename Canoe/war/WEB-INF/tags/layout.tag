@@ -6,6 +6,9 @@
 <title>${pageTitle}</title>
 <!-- Bootstrap -->
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"	media="screen" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 </head>
 <body>
 	<div class="navbar">
@@ -37,7 +40,6 @@
 	    </ul>
     </div>
 </footer>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
