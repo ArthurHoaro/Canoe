@@ -7,9 +7,9 @@ import com.google.appengine.api.datastore.Key;
 
 public class User implements IEntity {
 	private Key key;
-	private String fistname;
+	private String firstname;
 	private String lastname;
-	private String address;
+	private String mail;
 	private String username;
 	private String password;
 	private Date birthday;
@@ -23,9 +23,9 @@ public class User implements IEntity {
 	@Override
 	public void init(Entity e) {
 		this.key = e.getKey();
-		this.fistname = (String) e.getProperty("fistname");
+		this.firstname = (String) e.getProperty("firstname");
 		this.lastname = (String) e.getProperty("lastname");
-		this.address = (String) e.getProperty("address");
+		this.mail = (String) e.getProperty("mail");
 		this.username = (String) e.getProperty("username");
 		this.password = (String) e.getProperty("password");
 		this.birthday = (Date) e.getProperty("birthday");
@@ -39,11 +39,11 @@ public class User implements IEntity {
 	public void setKey(Key key) {
 		this.key = key;
 	}
-	public String getFistname() {
-		return fistname;
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setFistname(String fistname) {
-		this.fistname = fistname;
+	public void setFirstname(String fistname) {
+		this.firstname = fistname;
 	}
 	public String getLastname() {
 		return lastname;
@@ -57,11 +57,11 @@ public class User implements IEntity {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public String getAddress() {
-		return address;
+	public String getMail() {
+		return mail;
 	}
 	public void setAddress(String address) {
-		this.address = address;
+		this.mail = address;
 	}
 	public String getUsername() {
 		return username;
