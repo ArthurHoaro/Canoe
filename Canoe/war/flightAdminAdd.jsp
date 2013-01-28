@@ -18,52 +18,32 @@
 	<form class="form-horizontal">
 			<div class="row-fluid">
 				<div class="span3">
-				  <div class="control-group">
-				    <label class="control-label" for="leavingFrom">Leaving From</label>
-				    <div class="controls">
-				      <input type="text" id="leavingFrom" placeholder="Leaving From">
-				    </div>
-				  </div>
-				  <div class="control-group">
-				    <label class="control-label" for="goingTo">Going To</label>
-				    <div class="controls">
-				      <input type="text" id="goingTo" placeholder="Going To">
-				    </div>
-				  </div>
+					<div class="control-group">	
+			      		<input type="text" id="leavingFrom" placeholder="Leaving From">
+			      	</div>
+			      	<div class="control-group">
+			      		<input type="text" id="goingTo" placeholder="Going To">
+			      	</div>
 				</div>
 				<div class="span3">
 					<div class="control-group">
-					    <label class="control-label" for="departing">Departing</label>
-					    <div class="controls">
-					      <input type="text" id="departing" placeholder="Departing">
-					    </div>
-				  	</div>
-					 <div class="control-group">
-					   <label class="control-label" for="arrivalTime">Arrival Time</label>
-					   <div class="controls">
-					     <input type="text" id="arrivalTime" placeholder="Arrival Time">
-					   </div>
-					 </div>
-				</div>
-				<div class="span3">
+						<input type="text" id="departing" placeholder="Departing">
+					</div>
 					<div class="control-group">
-						<label class="control-label" for="price">Price</label>
-						<div class="controls">
-						  <input type="text" id="price" placeholder="Price">
-						</div>
-	 				</div>
-					<div class="control-group">
-						<label class="control-label" for="availableSeats">Available seats</label>
-						<div class="controls">
-						  <input type="text" id="availableSeats" placeholder="Available seats">
-						</div>
+						<input type="text" id="arrivalTime" placeholder="Arrival Time">
 					</div>
 				</div>
 				<div class="span3">
 					<div class="control-group">
-						<div class="controls">
-							<input type="submit" id="add" value="Add">
-						</div>
+						<input type="text" id="price" placeholder="Price">
+					</div>
+					<div class="control-group">
+						<input type="text" id="availableSeats" placeholder="Available seats">
+					</div>
+				</div>
+				<div class="span3">
+					<div class="control-group">
+						<input type="submit" id="add" value="Add">
 					</div>
 				</div>
 			</div>
