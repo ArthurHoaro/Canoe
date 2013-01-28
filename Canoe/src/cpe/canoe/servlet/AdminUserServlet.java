@@ -10,37 +10,39 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
 
-import cpe.canoe.services.UserModel;
+import cpe.canoe.model.IEntity;
+import cpe.canoe.model.User;
+import cpe.canoe.services.UserService;
 
 public class AdminUserServlet extends HttpServlet {
-	private UserModel umodel;
-	private ArrayList<Entity> listUsers;
+	private UserService uService;
+	private ArrayList<IEntity> listUsers;
 	
 	public AdminUserServlet() {
-		umodel = new UserModel(); 
-		listUsers = new ArrayList<Entity>();
+		uService = new UserService(); 
+		listUsers = new ArrayList<IEntity>();
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-		if( umodel.isLoggedIn() ) {
-			PreparedQuery pq = umodel.getDBInstance().prepare(umodel.findAll());
-			for ( Entity user : pq.asIterable() ) {
-				listUsers.add(user);
-			}
+		if( uService.isLoggedIn() ) {
+			listUsers = (ArrayList<IEntity>) uService.findAll();
+			
 			try {
 				req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else {
+			try {
+				req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		else
-			resp.('/login');
 	}
 
 	@Override

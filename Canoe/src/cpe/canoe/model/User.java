@@ -5,7 +5,7 @@ import java.util.Date;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 
-public class User {
+public class User implements IEntity {
 	private Key key;
 	private String fistname;
 	private String lastname;
@@ -17,6 +17,11 @@ public class User {
 	private Date lastLoginDate;
 	
 	public User( Entity e ) {
+		this.init(e);
+	}
+	
+	@Override
+	public void init(Entity e) {
 		this.key = e.getKey();
 		this.fistname = (String) e.getProperty("fistname");
 		this.lastname = (String) e.getProperty("lastname");
@@ -25,13 +30,13 @@ public class User {
 		this.password = (String) e.getProperty("password");
 		this.birthday = (Date) e.getProperty("birthday");
 		this.registerDate = (Date) e.getProperty("registerDate");
-		this.lastLoginDate = (Date) e.getProperty("lastLoginDate");
+		this.lastLoginDate = (Date) e.getProperty("lastLoginDate");		
 	}
 	
-	public String getKey() {
+	public Key getKey() {
 		return key;
 	}
-	public void setKey(String key) {
+	public void setKey(Key key) {
 		this.key = key;
 	}
 	public String getFistname() {
@@ -70,7 +75,4 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
 }
