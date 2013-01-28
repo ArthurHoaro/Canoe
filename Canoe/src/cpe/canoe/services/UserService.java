@@ -2,6 +2,8 @@ package cpe.canoe.services;
 
 import java.util.Date;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
@@ -41,6 +43,7 @@ public class UserService extends Service {
         user.setProperty("lastname", usr.getLastname());
         user.setProperty("birthday", usr.getBirthday());
         user.setProperty("registerDate",new Date());
-        user.setProperty("lastLoginDate",new Date());       
+        user.setProperty("lastLoginDate",new Date());   
+        this.getDBInstance().put(user);
 	}
 }

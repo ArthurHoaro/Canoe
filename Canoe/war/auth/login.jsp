@@ -6,15 +6,15 @@
 <z:layout pageTitle="Login">
 	<form class="form-horizontal" action="/login" method="post">
 		<div class="control-group">
-			<label class="control-label" for="login">Login</label>
+			<label class="control-label" for="username">Login</label>
 			<div class="controls">
-				<input type="text" id="login" placeholder="Email">
+				<input type="text" id="username" name="username" placeholder="Email">
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputPassword">Password</label>
+			<label class="control-label" for="pass">Password</label>
 			<div class="controls">
-				<input type="password" id="inputPassword" placeholder="Password">
+				<input type="password" id="pass" name="pass" placeholder="Password">
 			</div>
 		</div>
 		<div class="control-group">

@@ -16,6 +16,8 @@ public class User implements IEntity {
 	private Date registerDate;
 	private Date lastLoginDate;
 	
+	public User() {
+	}
 	public User( Entity e ) {
 		this.init(e);
 	}
@@ -60,8 +62,8 @@ public class User implements IEntity {
 	public String getMail() {
 		return mail;
 	}
-	public void setAddress(String address) {
-		this.mail = address;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	public String getUsername() {
 		return username;
