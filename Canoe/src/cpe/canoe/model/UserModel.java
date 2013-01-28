@@ -13,4 +13,6 @@ public class UserModel extends Model {
 	public boolean isLoggedIn() {;
         return (UserServiceFactory.getUserService().getCurrentUser() != null) ? true : false;
 	}
+	
+	
 }
