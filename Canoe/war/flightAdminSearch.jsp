@@ -19,31 +19,20 @@
 			<div class="row-fluid">
 				<div class="span3">
 				  <div class="control-group">
-				    <label class="control-label" for="leavingFrom">Leaving From</label>
-				    <div class="controls">
 				      <input type="text" id="leavingFrom" placeholder="Leaving From">
-				    </div>
 				  </div>
 				  <div class="control-group">
-				    <label class="control-label" for="goingTo">Going To</label>
-				    <div class="controls">
 				      <input type="text" id="goingTo" placeholder="Going To">
-				    </div>
 				  </div>
 				</div>
 				<div class="span3">
 					<div class="control-group">
-					    <label class="control-label" for="departing">Departing</label>
-					    <div class="controls">
 					      <input type="text" id="departing" placeholder="Departing">
-					    </div>
 				  	</div>
 				</div>
 				<div class="span3">
 					<div class="control-group">
-						<div class="controls">
 							<input type="submit" id="go" value="Go">
-						</div>
 					</div>
 				</div>
 			</div>
