@@ -15,11 +15,14 @@
 	<div class="navbar">
 			<div class="navbar-inner">
 			<div class="container">		
-				<a class="brand" href="/index.jsp">Title</a>
+				<a class="brand" href="/index.jsp">Canoë</a>
 				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
+					<li class="active"><a href="/index.jsp">Home</a></li>
 					<li><a href="#">Link</a></li>
 					<li><a href="#">Link</a></li>
+					<c:if test="${User.admin == true}">
+						<li><a href="/admin/index">Administration</a></li>
+					</c:if>
 				</ul>
 				<c:if test="${User.username == null}">
 					<div class="nav pull-right">			

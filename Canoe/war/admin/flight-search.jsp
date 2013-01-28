@@ -7,15 +7,15 @@
 	<!-- Onglet Ajout ou Recherche -->
 	<ul class="nav nav-tabs">
 		<li>
-			<a href="/flightAdmin/Ajout">Ajout</a>
+			<a href="/admin/flight-add">Ajout</a>
 		</li>
 		<!-- Zone de recherche d'un vol -->
 		<li class="active">
-			<a href="/flightAdmin/Recherche">Recherche</a>
+			<a href="/admin/flight-search">Recherche</a>
 		</li>
 	</ul>
 	
-	<form class="form-horizontal" action="/flightAdmin/Ajout" method="post">
+	<form class="form-horizontal" action="/admin/flight-search" method="post">
 		<div class="row-fluid">
 			<div class="span3">
 			  <div class="control-group">
@@ -57,8 +57,8 @@
 	</table>
 	
 	<script>
-	  $(function() {
-	    $( ".datepicker" ).datepicker();
-	  });
+		$(document).ready(function(){	
+	    	$( ".datepicker" ).datepicker();
+	  	});
   	</script>
 </z:layout>

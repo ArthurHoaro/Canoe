@@ -4,15 +4,16 @@
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <z:layout pageTitle="Canoe - Administration - Utilisateurs">
-	<h1>Users</h1>
+	<h1>Gestion des utilisateurs</h1>
+	<hr />
 	
 	<c:if test="${param.del == 'ok'}">
 		<div class="alert alert-success">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			Votre demande de suppression a bien été prise en compte. Elle sera effective dans quelques instants.<br />
-			    <div class="progress progress-striped active">
-			    	<div class="bar" style="width: 0%;"></div>
-			    </div>
+		    <div class="progress progress-striped active">
+		    	<div class="bar" style="width: 0%;"></div>
+		    </div>
 		</div>
 		<div class="del-msg"></div>
 	</c:if>
@@ -32,6 +33,7 @@
     		<th>Nom</th>
     		<th>Inscription</th>
     		<th>Dernière activité</th>
+    		<th>Administrateur</th>
     		<th>Action</th>
     	</tr>
     	<c:forEach var="user" items="${listUsers}">
@@ -42,7 +44,19 @@
 	    			<td>${user.firstname} ${user.lastname}</td>
 	    			<td>${user.registerDate}</td>
 	    			<td>${user.lastLoginDate}</td>
-	    			<td><a href="/admin/delete?u=${user.key}"><i class="icon-remove"></i></a></td>
+	    			<td>
+	    				<c:if test="${user.admin == true}">
+	    					<i class="icon-ok"></i>
+	    				</c:if>
+	    				<c:if test="${user.admin != true}">
+	    					<i class="icon-remove"></i>
+	    				</c:if>	    				
+	    			</td>
+	    			<td>
+	    				<c:if test="${user.key != User.key}">
+	    					<a href="/admin/delete?u=${user.key}"><i class="icon-trash"></i></a>
+	    				</c:if>
+	    			</td>
 	    		</tr>
     		</c:if>
     	</c:forEach>

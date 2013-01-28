@@ -26,6 +26,10 @@ public class UserService extends Service {
 		return req.getSession().getAttribute("User") != null;
 	}
 	
+	public boolean isAdmin(HttpServletRequest req) {;
+		return this.isLoggedIn(req) && ((User)req.getSession().getAttribute("User")).isAdmin() == true;
+	}
+	
 	public User getUser(String username, String password ){
 		User usr = null;
 		Query q = new Query(this.entityName).addFilter("username", Query.FilterOperator.EQUAL, username)
@@ -46,7 +50,8 @@ public class UserService extends Service {
         user.setProperty("lastname", usr.getLastname());
         user.setProperty("birthday", usr.getBirthday());
         user.setProperty("registerDate",new Date());
-        user.setProperty("lastLoginDate",new Date());   
+        user.setProperty("lastLoginDate",new Date()); 
+        user.setProperty("admin", true);
         this.getDBInstance().put(user);
 	}
 

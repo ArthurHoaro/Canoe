@@ -28,7 +28,7 @@ public class AdminUserDeleteServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-		if( uService.isLoggedIn(req) ) {
+		if( uService.isAdmin(req) ) {
 			if( req.getParameter("queue") == "1" ) {
 				System.out.println("delete");
 				uService.remove(KeyFactory.stringToKey(req.getParameter("u")));

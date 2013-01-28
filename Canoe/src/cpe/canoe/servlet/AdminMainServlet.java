@@ -15,30 +15,24 @@ import cpe.canoe.model.IEntity;
 import cpe.canoe.model.User;
 import cpe.canoe.services.UserService;
 
-public class AdminUserServlet extends HttpServlet {
+public class AdminMainServlet extends HttpServlet {
 	private UserService uService;
-	private ArrayList<IEntity> listUsers;
 	
-	public AdminUserServlet() {
-		uService = new UserService(); 
-		listUsers = new ArrayList<IEntity>();
+	public AdminMainServlet() {
+		uService = new UserService();
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 		if( uService.isAdmin(req) ) {			
-			listUsers = (ArrayList<IEntity>) uService.findAll();
-			
 			try {
-				req.setAttribute("listUsers", listUsers);
-				req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
+				req.getRequestDispatcher("/admin/index.jsp").forward(req, resp);
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else {
+		} else 
 			resp.sendRedirect("/auth/login.jsp");
-		}
 	}
 
 	@Override
