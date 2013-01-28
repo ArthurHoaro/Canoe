@@ -33,13 +33,13 @@ public class AdminUserDeleteServlet extends HttpServlet {
 				System.out.println("delete");
 				uService.remove(KeyFactory.stringToKey(req.getParameter("u")));
 			}
-			else {
-				if ( req.getParameter("u") != null ) {
-					Queue queue = QueueFactory.getQueue("delete-user");
-			        queue.add(TaskOptions.Builder.withUrl("/admin/delete").param("u", req.getParameter("u")).param("queue", "1"));
-				}
-				resp.sendRedirect("/admin/users");
+			else if ( req.getParameter("u") != null ) {
+				Queue queue = QueueFactory.getQueue("delete-user");
+		        queue.add(TaskOptions.Builder.withUrl("/admin/delete").param("u", req.getParameter("u")).param("queue", "1"));
+		        resp.sendRedirect("/admin/users?del=ok&u="+req.getParameter("u"));
 			}
+			else
+				resp.sendRedirect("/admin/users?del=ko");
 		}
 	}
 

@@ -26,7 +26,7 @@ public class AdminUserServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-		if( uService.isLoggedIn() ) {
+		if( uService.isLoggedIn() ) {			
 			listUsers = (ArrayList<IEntity>) uService.findAll();
 			
 			try {
