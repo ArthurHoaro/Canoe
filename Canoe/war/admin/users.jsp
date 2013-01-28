@@ -5,6 +5,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <z:layout pageTitle="Canoe - Administration - Utilisateurs">
 	<h1>Users</h1>
+	<div class="pull-right" style="margin-bottom: 20px;">
+		<a href="/auth/register.jsp" title="Ajouter un utilisateur" class="btn btn-success">
+			Ajouter un utilisateur
+		</a>
+	</div>
     <table class="table">
     	<tr>
     		<th>#</th>
@@ -21,10 +26,15 @@
     			<td>${user.fistname} ${user.lastname}</td>
     			<td>${user.registerDate}</td>
     			<td>${user.lastLoginDate}</td>
-    			<td><a href="/admin/delete?u=#{user.key}"><i class="icon-remove"></i></a></td>
+    			<td><a href="/admin/delete?u=${user.key}"><i class="icon-remove"></i></a></td>
     		</tr>
     	</c:forEach>
     </table>
+    <div class="pull-right" style="margin-top: 20px;">
+		<a href="/auth/register.jsp" title="Ajouter un utilisateur" class="btn btn-success">
+			Ajouter un utilisateur
+		</a>
+	</div>
 </z:layout>
 <%-- 
 <%@include file="template/header.html" %>
