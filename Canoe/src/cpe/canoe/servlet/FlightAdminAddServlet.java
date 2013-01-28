@@ -1,12 +1,20 @@
 package cpe.canoe.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.persistence.criteria.From;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import cpe.canoe.model.Flight;
+import cpe.canoe.services.FlightService;
+import cpe.canoe.services.UserService;
 
 public class FlightAdminAddServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -23,5 +31,34 @@ public class FlightAdminAddServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = null;
+		
+		dispatcher = req.getRequestDispatcher("/flightAdminAdd.jsp");
+		
+		FlightService flightService = new cpe.canoe.services.FlightService();
+		SimpleDateFormat parseDate = new java.text.SimpleDateFormat("dd/MM/yyyy");
+		Date dateDepart = null;
+		Date dateArrivee = null;
+		try {
+			dateDepart = (Date) parseDate.parse(req.getParameter("departing"));
+			dateArrivee = (Date) parseDate.parse(req.getParameter("arrivalTime"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String from = req.getParameter("leavingFrom");
+		String to = req.getParameter("goingTo");
+		float price = Float.parseFloat(req.getParameter("price"));
+		int availableSeats = Integer.parseInt(req.getParameter("availableSeats"));
+		
+		Flight flight = new Flight(dateDepart, dateArrivee, from, to, price, availableSeats);
+		flightService.addFlight(flight);
+		
+		dispatcher.forward(req, resp);
 	}
 }

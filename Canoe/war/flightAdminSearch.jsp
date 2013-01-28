@@ -19,15 +19,15 @@
 		<div class="row-fluid">
 			<div class="span3">
 			  <div class="control-group">
-			      <input type="text" id="leavingFrom" placeholder="Leaving From">
+			      <input type="text" id="leavingFrom" name="leavingFrom" placeholder="Leaving From">
 			  </div>
 			  <div class="control-group">
-			      <input type="text" id="goingTo" placeholder="Going To">
+			      <input type="text" id="goingTo" name="goingTo" placeholder="Going To">
 			  </div>
 			</div>
 			<div class="span3">
 				<div class="control-group">
-				      <input type="text" id="departing" class="datepicker" placeholder="Departing">
+				      <input type="text" id="departing" name="departing" class="datepicker" placeholder="Departing">
 			  	</div>
 			</div>
 			<div class="span3">

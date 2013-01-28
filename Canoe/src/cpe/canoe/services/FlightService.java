@@ -16,7 +16,7 @@ import cpe.canoe.model.User;
 
 public class FlightService extends Service {
 
-	public FlightService(String type) {
+	public FlightService() {
 		super("Flight");
 	}
 	

@@ -15,30 +15,30 @@
 		</li>
 	</ul>
 	
-	<form class="form-horizontal" action="/flightAdmin/Recherche" method="post">
+	<form class="form-horizontal" action="/flightAdmin/Ajout" method="post">
 			<div class="row-fluid">
 				<div class="span3">
 					<div class="control-group">	
-			      		<input type="text" id="leavingFrom" placeholder="Leaving From">
+			      		<input required="required" type="text" id="leavingFrom" name="leavingFrom" placeholder="Leaving From">
 			      	</div>
 			      	<div class="control-group">
-			      		<input type="text" id="goingTo" placeholder="Going To">
+			      		<input required="required" type="text" id="goingTo" name="goingTo" placeholder="Going To">
 			      	</div>
 				</div>
 				<div class="span3">
 					<div class="control-group">
-						<input type="text" id="departing" class="datepicker" placeholder="Departing">
+						<input required="required" type="text" id="departing" name="departing" class="datepicker" placeholder="Departing">
 					</div>
 					<div class="control-group">
-						<input type="text" id="arrivalTime" class="datepicker" placeholder="Arrival Time">
+						<input required="required" type="text" id="arrivalTime" name="arrivalTime" class="datepicker" placeholder="Arrival Time">
 					</div>
 				</div>
 				<div class="span3">
 					<div class="control-group">
-						<input type="text" id="price" placeholder="Price">
+						<input required="required" type="text" id="price" name="price" placeholder="Price">
 					</div>
 					<div class="control-group">
-						<input type="text" id="availableSeats" placeholder="Available seats">
+						<input required="required" type="text" id="availableSeats" name="availableSeats" placeholder="Available seats">
 					</div>
 				</div>
 				<div class="span3">

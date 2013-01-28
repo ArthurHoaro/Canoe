@@ -11,8 +11,19 @@ public class Flight implements IEntity {
 	private Date dateArrivee;
 	private String from;
 	private String to;
-	private String price;
+	private float price;
 	private int availableSeats;
+	
+	public Flight(Date dateDepart, Date dateArrivee, String from, String to, 
+			float price, int availableSeats)
+	{
+		this.dateDepart = dateDepart;
+		this.dateArrivee = dateArrivee;
+		this.from = from;
+		this.to = to;
+		this.price = price;
+		this.availableSeats = availableSeats;
+	}
 	
 	public Flight( Entity e ) {
 		this.init(e);
@@ -25,8 +36,8 @@ public class Flight implements IEntity {
 		this.dateArrivee = (Date) e.getProperty("dateArrivee");
 		this.from = (String) e.getProperty("from");
 		this.to = (String) e.getProperty("to");
-		this.price = (String) e.getProperty("price");
-		this.availableSeats = Integer.parseInt("availableSeats");
+		this.price = Float.parseFloat(e.getProperty("price").toString());
+		this.availableSeats = Integer.parseInt(e.getProperty("availableSeats").toString());
 	}
 
 	public int getAvailableSeats() {
@@ -77,11 +88,11 @@ public class Flight implements IEntity {
 		this.to = to;
 	}
 
-	public String getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
