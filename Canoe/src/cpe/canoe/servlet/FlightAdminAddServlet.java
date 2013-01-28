@@ -23,7 +23,9 @@ public class FlightAdminAddServlet extends HttpServlet {
 		
 		dispatcher = req.getRequestDispatcher("/flightAdminAdd.jsp");
 		
+		FlightService flightService = new cpe.canoe.services.FlightService();
 		
+		req.setAttribute("flightList", flightService.findAll());
 		
 		try {
 			dispatcher.forward(req, resp);

@@ -25,6 +25,11 @@ public class Flight implements IEntity {
 		this.availableSeats = availableSeats;
 	}
 	
+	public Flight()
+	{
+		
+	}
+	
 	public Flight( Entity e ) {
 		this.init(e);
 	}

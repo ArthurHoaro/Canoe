@@ -50,11 +50,11 @@
         <servlet-name>AdminUserDelete</servlet-name>
         <servlet-class>cpe.canoe.servlet.AdminUserDeleteServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>AdminUserDelete</servlet-name>
         <url-pattern>/admin/delete</url-pattern>
     </servlet-mapping>
-    
     
  <servlet>
   <servlet-name>SystemServiceServlet</servlet-name>

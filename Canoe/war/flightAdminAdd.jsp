@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <z:layout pageTitle="Gestion des vols">
 	<!-- Onglet Ajout ou Recherche -->
@@ -64,6 +65,33 @@
 	       </tr>
    		</THEAD>
    		<TBODY>
+   			<c:forEach items="${requestScope['flightList']}" var="flight">
+   				<TR>
+					<TD>
+						${flight.dateDepart}
+					</TD>
+					<TD>
+						${flight.dateArrivee}
+					</TD>
+					<TD>
+						${flight.from}
+					</TD>
+					<TD>
+						<p>TODO:Date Ecart</p>
+					</TD>
+					<TD>
+						${ flight.availableSeats }
+					</TD>
+					<TD>
+						${ flight.price }
+					</TD>
+					<TD>
+						<input type="submit">
+							<i class="icon-remove"></i>
+						</input>
+					</TD>
+				</TR>
+   			</c:forEach>
    		</TBODY>
 	</table>
 	<script>
