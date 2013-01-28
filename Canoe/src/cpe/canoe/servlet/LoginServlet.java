@@ -2,6 +2,7 @@ package cpe.canoe.servlet;
 
 import java.io.IOException;
 
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
@@ -26,10 +27,14 @@ public class LoginServlet extends HttpServlet {
 		UserService userService = new cpe.canoe.services.UserService();
 		User usr=
 		userService.getUser(req.getParameter("username"), req.getParameter("pass"));
-		if(usr!=null)
-			resp.sendRedirect("/index.jsp");
+		if(usr!=null){			
+			HttpSession session= req.getSession();
+			session.setAttribute("User", usr);
+			resp.sendRedirect("/user/user.jsp");
+		}
+		
 		else{
-			error=new String("Le systeme n'a pas reussi à vous logger");
+			error=new String("Le systeme n'a pas reussi à vous logger");		
 			req.setAttribute("error", error);
 			req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
 		}
