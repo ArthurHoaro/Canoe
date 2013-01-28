@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet>
 		<servlet-name>Canoe</servlet-name>
-		<servlet-class>com.canoe.CanoeServlet</servlet-class>
+		<servlet-class>cpe.canoe.servlet.CanoeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Canoe</servlet-name>
 		<url-pattern>/canoe</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Gestion des vols -->
+	<servlet>
+        <servlet-name>flightAdmin</servlet-name>
+        <servlet-class>cpe.canoe.servlet.FlightAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>flightAdmin</servlet-name>
+        <url-pattern>/flightAdmin</url-pattern>
+    </servlet-mapping>
+    
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
