@@ -1,4 +1,4 @@
-package cpe.canoe;
+package cpe.canoe.servlet;
 
 import java.io.IOException;
 import javax.servlet.http.*;
