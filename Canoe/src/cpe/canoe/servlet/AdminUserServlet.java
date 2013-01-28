@@ -14,7 +14,7 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-import cpe.canoe.model.UserModel;
+import cpe.canoe.services.UserModel;
 
 public class AdminUserServlet extends HttpServlet {
 	private UserModel umodel;
@@ -40,7 +40,7 @@ public class AdminUserServlet extends HttpServlet {
 			}
 		}
 		else
-			resp.sendRedirect(UserServiceFactory.getUserService().createLoginURL(req.getRequestURI()));
+			resp.('/login');
 	}
 
 	@Override

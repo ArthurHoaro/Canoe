@@ -1,4 +1,4 @@
-package cpe.canoe.model;
+package cpe.canoe.services;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -7,10 +7,10 @@ import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query;
 
-public abstract class Model {
+public abstract class Service {
 	protected String entity;
 	
-	public Model(String type) {
+	public Service(String type) {
 		this.entity = type;
 	}
 	
