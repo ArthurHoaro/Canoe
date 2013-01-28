@@ -12,6 +12,7 @@
     		<th>Nom</th>
     		<th>Inscription</th>
     		<th>Dernière activité</th>
+    		<th>Action</th>
     	</tr>
     	<c:forEach var="user" items="${listUsers}">
     		<tr>
@@ -20,6 +21,7 @@
     			<td>${user.fistname} ${user.lastname}</td>
     			<td>${user.registerDate}</td>
     			<td>${user.lastLoginDate}</td>
+    			<td><a href="/admin/delete?u=#{user.key}"><i class="icon-remove"></i></a></td>
     		</tr>
     	</c:forEach>
     </table>

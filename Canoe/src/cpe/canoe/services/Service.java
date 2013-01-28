@@ -3,6 +3,8 @@ package cpe.canoe.services;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import org.apache.jsp.ah.datastoreViewerBody_jsp;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -60,7 +62,10 @@ public abstract class Service {
 		}
 		((IEntity) obj).init(this.getDBInstance().get(key));
 		return (IEntity) obj;
-		
+	}
+	
+	public void remove(Key key) {
+		this.getDBInstance().delete(key);
 	}
 	
 	public final DatastoreService getDBInstance() {
