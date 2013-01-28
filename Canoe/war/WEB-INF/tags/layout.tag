@@ -5,7 +5,7 @@
 <head>
 <title>${pageTitle}</title>
 <!-- Bootstrap -->
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
 </head>
 <body>
@@ -21,13 +21,15 @@
 	</div>
     <jsp:doBody/>
 <footer>
-    <ul class="breadcrumb">
-    <li><a href="#">Home</a> <span class="divider">/</span></li>
-    <li><a href="#">Library</a> <span class="divider">/</span></li>
-    <li class="active">Data</li>
-    </ul>
+	<div class="navbar navbar-fixed-bottom">
+	    <ul class="breadcrumb">
+	    <li><a href="#">Home</a> <span class="divider">/</span></li>
+	    <li><a href="#">Library</a> <span class="divider">/</span></li>
+	    <li class="active">Data</li>
+	    </ul>
+    </div>
 </footer>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
