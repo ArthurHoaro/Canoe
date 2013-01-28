@@ -2,12 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>    
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
-  xmlns:c="http://java.sun.com/jsp/jstl/core"
-  version="2.0">
+
 <z:layout pageTitle="Canoe - Administration - Utilisateurs">
 	<h1>Users</h1>
     <table class="table">
+<<<<<<< HEAD
+    
+=======
     	<tr>
     		<th>#</th>
     		<th>Nom</th>
@@ -22,10 +23,7 @@
     			<td></td>
     		</tr>
     	</c:forEach>
+>>>>>>> c1b87aa94ce81ea35946520d32b2a7db06ba6965
     </table>
 </z:layout>
-<%-- 
-<%@include file="template/header.html" %>
 
-
-<%@include file="template/footer.html" %> --%>
