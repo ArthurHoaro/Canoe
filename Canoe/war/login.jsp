@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@include file="template/header.html" %>
+<%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<z:layout pageTitle="Login">
     <form class="form-horizontal">
     <div class="control-group">
     <label class="control-label" for="inputEmail">Email</label>
@@ -26,4 +27,4 @@
     </div>
     </form>
 
-<%@include file="template/footer.html" %>
+</z:layout>
