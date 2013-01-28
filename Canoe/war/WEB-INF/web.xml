@@ -18,12 +18,20 @@
 	
 	<!-- Gestion des vols -->
 	<servlet>
-        <servlet-name>flightAdmin</servlet-name>
-        <servlet-class>cpe.canoe.servlet.FlightAdminServlet</servlet-class>
+        <servlet-name>flightAdminAdd</servlet-name>
+        <servlet-class>cpe.canoe.servlet.FlightAdminAddServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>flightAdmin</servlet-name>
-        <url-pattern>/flightAdmin</url-pattern>
+        <servlet-name>flightAdminAdd</servlet-name>
+        <url-pattern>/flightAdmin/Ajout</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>flightAdminSearch</servlet-name>
+        <servlet-class>cpe.canoe.servlet.FlightAdminSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>flightAdminSearch</servlet-name>
+        <url-pattern>/flightAdmin/Recherche</url-pattern>
     </servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
