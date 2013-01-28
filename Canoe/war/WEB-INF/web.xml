@@ -25,6 +25,10 @@
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
+	
+	<listener>
+		<listener-class>cpe.canoe.listener.SessionCounterListener</listener-class>
+	</listener>
 
 	<!-- ************************************************* ** ADMIN ** ************************************************* -->
 

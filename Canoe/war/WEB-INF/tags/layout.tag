@@ -1,3 +1,4 @@
+<%@ tag import="cpe.canoe.listener.SessionCounterListener"%>
 <%@ tag body-content="scriptless" %>
 <%@ attribute name="pageTitle" required="true" type="java.lang.String" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,7 +18,7 @@
 			<div class="container">		
 				<a class="brand" href="/index.jsp">Canoë</a>
 				<ul class="nav">
-					<li class="active"><a href="/index.jsp">Home</a></li>
+					<li><a href="/index.jsp">Home</a></li>
 					<li><a href="#">Link</a></li>
 					<li><a href="#">Link</a></li>
 					<c:if test="${User.admin == true}">
@@ -34,14 +35,26 @@
 					<div class="nav pull-right">			
 						<ul class="nav">
 							<li>
-								<a href="#" style="cursor: default;" title="Connecté depuis <%= ((int)(((new java.util.Date()).getTime()/60000) - (((cpe.canoe.model.User) request.getSession().getAttribute("User")).getLastLoginDate().getTime()/60000)))%> minutes">Bienvenue ${User.firstname} !</a></li></ul>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										Bienvenue ${User.firstname} !
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#" style="cursor: default;">Connecté depuis <%= ((int)(((new java.util.Date()).getTime()/60000) - (((cpe.canoe.model.User) request.getSession().getAttribute("User")).getLastLoginDate().getTime()/60000)))%> minutes</a></li>
+									<%
+									    SessionCounterListener counter = (SessionCounterListener) session.getAttribute("counter");
+									%>
+									<li><a href="#" style="cursor: default;"><%= counter.getNb() %> utilisateurs connectés</a></li>
+									<li><a href="/auth/account">Gérer mon profil</a></li>
+									<li><a href="#">Historique des recherches</a></li>
+								</ul>
+							</li>
+						</ul>
 						<a href="/auth/logout" class="btn btn-danger">Se déconnecter</a>			
 					</div>
 				</c:if>
 			</div>
 			</div>
 		</div>
-	</div>
 	<div class="container">		
     	<jsp:doBody/>
     </div>
