@@ -29,7 +29,7 @@ public abstract class Service {
 		ArrayList<IEntity> entities = new ArrayList<IEntity>();
 		for( Entity e : pq.asList(FetchOptions.Builder.withDefaults() )) {
 			try {
-				Object obj = Class.forName(this.entityName).newInstance();
+				Object obj = Class.forName("cpe.canoe.model."+ this.entityName).newInstance();
 				((IEntity) obj).init(e);
 				entities.add((IEntity) obj);
 			} catch (InstantiationException e1) {
