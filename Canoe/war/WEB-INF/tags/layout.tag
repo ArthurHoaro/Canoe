@@ -9,6 +9,7 @@
 <!-- Bootstrap -->
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"	media="screen" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/css/style.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 </head>
@@ -44,7 +45,7 @@
 									    SessionCounterListener counter = (SessionCounterListener) session.getAttribute("counter");
 									%>
 									<li><a href="#" style="cursor: default;"><%= counter.getNb() %> utilisateurs connectés</a></li>
-									<li><a href="/auth/account">Gérer mon profil</a></li>
+									<li><a href="/auth/edit">Gérer mon profil</a></li>
 									<li><a href="#">Historique des recherches</a></li>
 								</ul>
 							</li>
@@ -59,13 +60,11 @@
     	<jsp:doBody/>
     </div>
 <footer>
-	<div class="navbar navbar-fixed-bottom">
-	    <ul class="breadcrumb">
-	    <li><a href="#">Home</a> <span class="divider">/</span></li>
-	    <li><a href="#">Library</a> <span class="divider">/</span></li>
-	    <li class="active">Data</li>
-	    </ul>
-    </div>
+	<div class="footer navbar -navbar-fixed-bottom">
+		<p class="offset3">
+			Canoë <i class="icon-chevron-right"></i> Réservation de vols en ligne <i class="icon-chevron-right"></i> 2013
+		</p>
+	</div>
 </footer>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>

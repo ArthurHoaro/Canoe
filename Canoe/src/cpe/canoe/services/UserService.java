@@ -41,18 +41,11 @@ public class UserService extends Service {
 	}
 	
 	public void addUser(User usr){
-		Key ukey = KeyFactory.createKey("Username", usr.getUsername());
-        Entity user = new Entity("User", ukey);
-        user.setProperty("username", usr.getUsername());
-        user.setProperty("password", usr.getPassword());
-        user.setProperty("mail", usr.getMail());
-        user.setProperty("firstname", usr.getFirstname());
-        user.setProperty("lastname", usr.getLastname());
-        user.setProperty("birthday", usr.getBirthday());
-        user.setProperty("registerDate",new Date());
-        user.setProperty("lastLoginDate",new Date()); 
-        user.setProperty("admin", true);
-        this.getDBInstance().put(user);
+        this.getDBInstance().put(this.ormToEntity(usr, true));
+	}
+	
+	public void updateUser(User usr){
+		this.getDBInstance().put(this.ormToEntity(usr, false));
 	}
 
 	public void updateSessionDate(User user) {
@@ -66,5 +59,29 @@ public class UserService extends Service {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private Entity ormToEntity(User usr, boolean newUser) {
+		Entity user = null;
+		if( newUser ) {
+			Key ukey = KeyFactory.createKey("Username", usr.getUsername());
+	        user = new Entity("User", ukey);
+		} else
+			try {
+				user = this.getDBInstance().get(KeyFactory.stringToKey(usr.getKey()));
+			} catch (EntityNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        user.setProperty("username", usr.getUsername());
+        user.setProperty("password", usr.getPassword());
+        user.setProperty("mail", usr.getMail());
+        user.setProperty("firstname", usr.getFirstname());
+        user.setProperty("lastname", usr.getLastname());
+        user.setProperty("birthday", usr.getBirthday());
+        user.setProperty("registerDate",new Date());
+        user.setProperty("lastLoginDate",new Date()); 
+        user.setProperty("admin", true);
+        return user;
 	}
 }

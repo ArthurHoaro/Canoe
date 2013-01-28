@@ -11,6 +11,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
@@ -49,7 +50,7 @@ public abstract class Service {
 	public IEntity findByKey(Key key) throws EntityNotFoundException {
 		Object obj = null;
 		try {
-			obj = Class.forName(this.entityName).newInstance();
+			obj = Class.forName("cpe.canoe.model."+this.entityName).newInstance();
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
