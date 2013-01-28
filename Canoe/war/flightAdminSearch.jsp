@@ -57,8 +57,8 @@
 				<THEAD>
 			       <tr>
 			           <th>Date</th>
-			           <th>Departure Time</th>
-			           <th>Arrival Time</th>
+			           <th>Departure Town</th>
+			           <th>Arrival Town</th>
 			           <th>Flight duration</th>
 			           <th>Available seats</th>
 			           <th>Price</th>
