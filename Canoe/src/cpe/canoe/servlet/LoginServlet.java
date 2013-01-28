@@ -30,6 +30,7 @@ public class LoginServlet extends HttpServlet {
 		if(usr!=null){			
 			HttpSession session= req.getSession();
 			session.setAttribute("User", usr);
+			userService.updateSessionDate(usr);
 			resp.sendRedirect("/user/user.jsp");
 		}
 		

@@ -2,8 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <z:layout pageTitle="Login">
+	<h1>Connexion</h1>
+	<hr />
+	
+	<c:if test="${error != null}">
+		<div class="alert alert-error">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			${error}
+		</div>
+	</c:if>
+	
 	<form class="form-horizontal" action="/login" method="post">
 		<div class="control-group">
 			<label class="control-label" for="username">Login</label>
@@ -19,11 +29,9 @@
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<label class="checkbox"> <input type="checkbox">
-						Remember me </label> 				
 				<button type="submit" class="btn">Sign in</button>
 			</div>
-		</div>		
+		</div>
 	</form>
-<p class="alert alert-error">${error}</p>
+	
 </z:layout>

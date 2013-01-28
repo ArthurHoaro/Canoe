@@ -2,9 +2,12 @@ package cpe.canoe.services;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -19,8 +22,12 @@ public class UserService extends Service {
 		super("User");
 	}
 
-	public boolean isLoggedIn() {;
-		return true;
+	public boolean isLoggedIn(HttpServletRequest req) {;
+		return req.getSession().getAttribute("User") != null;
+	}
+	
+	public boolean isAdmin(HttpServletRequest req) {;
+		return this.isLoggedIn(req) && ((User)req.getSession().getAttribute("User")).isAdmin() == true;
 	}
 	
 	public User getUser(String username, String password ){
@@ -43,7 +50,21 @@ public class UserService extends Service {
         user.setProperty("lastname", usr.getLastname());
         user.setProperty("birthday", usr.getBirthday());
         user.setProperty("registerDate",new Date());
-        user.setProperty("lastLoginDate",new Date());   
+        user.setProperty("lastLoginDate",new Date()); 
+        user.setProperty("admin", true);
         this.getDBInstance().put(user);
+	}
+
+	public void updateSessionDate(User user) {
+		Entity dbUser = null;
+		try {
+			dbUser = this.getDBInstance().get(KeyFactory.stringToKey(user.getKey()));
+			dbUser.setProperty("lastLoginDate",new Date());
+			this.getDBInstance().put(dbUser);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

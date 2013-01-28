@@ -16,7 +16,7 @@ import cpe.canoe.model.Flight;
 import cpe.canoe.services.FlightService;
 import cpe.canoe.services.UserService;
 
-public class FlightAdminAddServlet extends HttpServlet {
+public class AdminFlightAddServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		RequestDispatcher dispatcher = null;

@@ -16,6 +16,7 @@ public class User implements IEntity {
 	private Date birthday;
 	private Date registerDate;
 	private Date lastLoginDate;
+	private boolean admin;
 	
 	public User() {
 	}
@@ -33,9 +34,16 @@ public class User implements IEntity {
 		this.password = (String) e.getProperty("password");
 		this.birthday = (Date) e.getProperty("birthday");
 		this.registerDate = (Date) e.getProperty("registerDate");
-		this.lastLoginDate = (Date) e.getProperty("lastLoginDate");		
+		this.lastLoginDate = (Date) e.getProperty("lastLoginDate");
+		this.admin = (Boolean) e.getProperty("admin");
 	}
 	
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	public Date getRegisterDate() {
 		return registerDate;
 	}
