@@ -29,7 +29,9 @@
 				</c:if>
 				<c:if test="${User.username != null}">
 					<div class="nav pull-right">			
-						<ul class="nav"><li><a href="#" style="cursor: default;">Bienvenue ${User.firstname} !</a></li></ul>
+						<ul class="nav">
+							<li>
+								<a href="#" style="cursor: default;" title="Connecté depuis <%= ((int)(((new java.util.Date()).getTime()/60000) - (((cpe.canoe.model.User) request.getSession().getAttribute("User")).getLastLoginDate().getTime()/60000)))%> minutes">Bienvenue ${User.firstname} !</a></li></ul>
 						<a href="/auth/logout" class="btn btn-danger">Se déconnecter</a>			
 					</div>
 				</c:if>
