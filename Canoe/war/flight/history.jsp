@@ -26,9 +26,10 @@
 	
 	<span class="divider"></span>
 	
-	<table class="table table-striped table-bordered">
+	<table class="table table-striped table-hover">
 		<thead>
 	       <tr>
+       			<th>Date</th>
 	           <th>Départ de</th>
 	           <th>Arrivée à</th>
 	           <th>Le</th>
@@ -39,12 +40,13 @@
    		<tbody>
    			<c:forEach var="histoEntry" items="${history}">
    				<tr>
-   					<td>Date</td>
+   					<fmt:formatDate value="${histoEntry.date}" pattern="dd/MM/yyyy à HH:mm" var="fDate" />
+   					<td>${fDate}</td>
    					<td>${histoEntry.from}</td>
    					<td>${histoEntry.to}</td>
    					<fmt:formatDate value="${histoEntry.departure}" pattern="dd/MM/yyyy" var="fDeparture" />
    					<td>${fDeparture}</td>
-   					<td>${histoEntry.nbResult}</td>
+   					<td>${histoEntry.nbResponse}</td>
    					<td>${histoEntry.avgPrice}</td>
    				</tr>
    			</c:forEach>
