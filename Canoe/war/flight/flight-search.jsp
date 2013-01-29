@@ -69,7 +69,7 @@
 	</form>
 
 	<hr />
-	<h3>From :  </h3>
+	<h3>From  ${param.from} : ${param.to}   </h3>
 	<div class="Well">	
 	<table class="table table-striped table-bordered">
 		<THEAD>
@@ -84,7 +84,7 @@
 			</tr>
 		</THEAD>
 		<TBODY>
-		<c:forEach var="entry" items="${requestScope['listFlightDepartFound']}">
+		<c:forEach var="entry" items="${departs}">
 			<tr>
 				<TD ${entry.dateDepart }/>
 				<TD ${entry.from }/>
@@ -98,7 +98,7 @@
 	</table>
 	</div>
 	<!-- RETURN -->
-	<h3>Return ==> From :  </h3>
+	<h3>Return ==> From   ${param.to} : ${param.from}  </h3>
 	<div class="Well">	
 	<table class="table table-striped table-bordered">
 		<THEAD>
@@ -113,7 +113,7 @@
 			</tr>
 		</THEAD>
 		<TBODY>
-		<c:forEach var="entry" items="${requestScope['listFlightReturnFound']}">
+		<c:forEach var="entry" items="${requestScope['returns']}">
 			<tr>
 				<TD ${entry.dateDepart }/>
 				<TD ${entry.from }/>
