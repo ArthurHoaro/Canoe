@@ -16,7 +16,7 @@
 					<th>Arrival Town</th>
 					<th>Flight duration</th>
 					<th>Available seats</th>
-					<th>Price (€)</th>
+					<th>Price</th>
 
 				</tr>
 			</THEAD>
@@ -26,11 +26,10 @@
 					<td>${flight.dateDepart }</td>
 					<td>${flight.from }</td>
 					<td>${flight.to }</td>
-
 					<td><fmt:formatDate value="${flight.duration}"
 							pattern="dd' jours et' HH'h'mm" var="duration" /> ${duration }</td>
 					<td>${flight.availableSeats }</td>
-					<td>${flight.price }</td>
+					<td>${flight.price } €</td>
 
 				</tr>
 
@@ -41,8 +40,8 @@
 	<form class="form-horizontal" action="/flight/flight-reserve"
 		method="post">
 		<button class="btn btn-success span2" type="submit" id="confirm">
-						<i class="icon-search icon-white"></i> Confirm
-					</button>
+			<i class="icon-check icon-white"></i> Confirm
+		</button>
 	</form>
 
 
