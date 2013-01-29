@@ -48,7 +48,7 @@
 				</div>
 				<div class="span3">
 					<button type="submit" class="btn btn-success">
-						  <i class="icon-ok">Ajouter ce vol</i>
+						  <i class="icon-ok"></i>
 					</button>
 				</div>
 			</div>
