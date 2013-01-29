@@ -23,7 +23,7 @@
 			<label class="control-label" for="birthday">Birthday
 				(JJ/MM/YYYY)</label>
 			<div class="controls">
-				<input type="number" id="birthday" name="birthday"
+				<input type="text" id="birthday" name="birthday"
 					placeholder="Birthday" class="datepicker">
 			</div>
 		</div>
