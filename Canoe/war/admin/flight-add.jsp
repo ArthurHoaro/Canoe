@@ -71,10 +71,10 @@
 						${flight.dateDepart}
 					</TD>
 					<TD>
-						${flight.dateArrivee}
+						${flight.from}
 					</TD>
 					<TD>
-						${flight.from}
+						${flight.to}
 					</TD>
 					<TD>
 						<p>TODO:Date Ecart</p>
