@@ -18,7 +18,7 @@
 		<div class="control-group">
 			<label class="control-label" for="username">Login</label>
 			<div class="controls">
-				<input type="text" id="username" name="username" placeholder="Username">
+				<input type="text" id="username" name="username" placeholder="Nom d'utilisateur">
 			</div>
 		</div>
 		<div class="control-group">
@@ -29,7 +29,7 @@
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<button type="submit" class="btn">Sign in</button>
+				<button type="submit" class="btn btn-success btn-large">Sign in</button>
 			</div>
 		</div>
 	</form>

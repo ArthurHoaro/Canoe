@@ -44,6 +44,9 @@ public class User implements IEntity {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+	public void toggleAdmin(){
+		this.admin = (this.admin == true) ? false : true;
+	}
 	public Date getRegisterDate() {
 		return registerDate;
 	}

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 
 import cpe.canoe.model.IEntity;
@@ -31,6 +33,17 @@ public class AdminUserServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 		if( uService.isAdmin(req) ) {			
+			if( req.getParameter("adm") != null && !req.getParameter("adm").equals(((User)req.getSession().getAttribute("User")).getKey())) {
+				try {
+					User user = (User) uService.findByKey(KeyFactory.stringToKey((String) req.getParameter("adm")));
+					user.toggleAdmin();
+					uService.updateUser(user);
+				} catch (EntityNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 			listUsers = (ArrayList<IEntity>) uService.findAll();
 			
 			try {
