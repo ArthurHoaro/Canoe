@@ -84,7 +84,7 @@ public class AdminFlightSearchServlet extends HttpServlet {
 				this.returnSearch = false;
 			
 			this.listFlightDepartFound = fs.getFlights(from, to,departingDate );
-			hs.add(this.createHistoryEntity(departingDate, from, to, listFlightDepartFound.size(),userLoggedIn ));			
+			hs.add(this.createHistoryEntity(departingDate, from, to, listFlightDepartFound.size(), userLoggedIn ));			
 			
 			if(returnSearch){
 				this.listFlightReturnFound=fs.getFlights(to, from, returnDate);
