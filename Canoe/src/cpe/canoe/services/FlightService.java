@@ -1,7 +1,9 @@
 package cpe.canoe.services;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +28,9 @@ public class FlightService extends Service {
 	public List<Flight> getFlights(String from, String to, Date dateDepart ){
 		List<Flight> flights = new ArrayList<Flight>();
 		Query q = new Query(this.entityName).addFilter("from", Query.FilterOperator.EQUAL, from)
-				.addFilter("to", Query.FilterOperator.EQUAL, to).addFilter("dateDepart", Query.FilterOperator.EQUAL, dateDepart);
+				.addFilter("to", Query.FilterOperator.EQUAL, to)
+				.addFilter("dateDepart", Query.FilterOperator.LESS_THAN_OR_EQUAL,datePlusOneDay(dateDepart))
+				.addFilter("dateDepart",  Query.FilterOperator.GREATER_THAN_OR_EQUAL, dateDepart);
 		PreparedQuery pq = this.getDBInstance().prepare(q);
 		if(!pq.asList(FetchOptions.Builder.withDefaults()).isEmpty())
 		{
@@ -36,6 +40,13 @@ public class FlightService extends Service {
 			}
 		}
 		return flights;
+	}
+	
+	private Date datePlusOneDay(Date date){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime( date );
+		cal.add( Calendar.DATE, 1 );
+		return cal.getTime();
 	}
 	
 	protected Entity ormToEntity(IEntity iOrm, boolean newEntity){
