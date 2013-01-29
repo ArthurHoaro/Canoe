@@ -50,7 +50,7 @@ public class History implements IEntity {
 		this.from = (String) e.getProperty("from");
 		this.to = (String) e.getProperty("to");
 		this.departure = (Date) e.getProperty("departure");
-		this.nbResponse = (Integer) e.getProperty("nbResponse");
+		this.nbResponse = (Integer) ((Long)e.getProperty("nbResponse")).intValue();
 		this.userKey = (String) e.getProperty("user");
 		this.avgPrice = (Long) e.getProperty("avgPrice");
 	}

@@ -69,6 +69,13 @@ public abstract class Service {
 		this.getDBInstance().delete(key);
 	}
 	
+	public void removeAll() {
+		Query q = new Query(this.entityName);
+		PreparedQuery pq = this.getDBInstance().prepare(q);
+		for(Entity en : pq.asList(FetchOptions.Builder.withDefaults()) )
+			this.getDBInstance().delete(en.getKey());
+	}
+	
 	public void add(IEntity en) {
 		this.getDBInstance().put(this.ormToEntity(en, true));
 	}

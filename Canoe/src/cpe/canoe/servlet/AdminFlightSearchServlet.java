@@ -104,7 +104,7 @@ public class AdminFlightSearchServlet extends HttpServlet {
 		hist.setFrom(from);
 		hist.setTo(to);
 		hist.setNbResponse(nbResponse);
-		hist.setKey(usr.getKey());		
+		hist.setUser(usr.getUsername());		
 		return hist;
 	}
 }
