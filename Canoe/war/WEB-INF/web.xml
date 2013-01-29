@@ -111,6 +111,15 @@
 	 	 ** 			END ADMIN 						** 
 		 ************************************************* -->
 
+	<servlet>
+		<servlet-name>FlightHistory</servlet-name>
+		<servlet-class>cpe.canoe.servlet.HistoryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FlightHistory</servlet-name>
+		<url-pattern>/flight/history</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
