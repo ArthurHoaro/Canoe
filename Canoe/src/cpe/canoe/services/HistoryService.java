@@ -60,7 +60,7 @@ public class HistoryService extends Service {
         finalEntity.setProperty("from", orm.getFrom());
         finalEntity.setProperty("to", orm.getTo());
         finalEntity.setProperty("nbResponse", orm.getNbResponse());
-        finalEntity.setProperty("user", orm.getUser());
+        finalEntity.setProperty("userKey", orm.getUser());
         finalEntity.setProperty("avgPrice", orm.getAvgPrice());
         if( newEntity )
         	finalEntity.setProperty("date", new Date());

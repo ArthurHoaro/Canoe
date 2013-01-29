@@ -84,12 +84,15 @@ public class AdminFlightSearchServlet extends HttpServlet {
 				this.returnSearch = false;
 			
 			this.listFlightDepartFound = fs.getFlights(from, to,departingDate );
-			hs.add(this.createHistoryEntity(departingDate, from, to, listFlightDepartFound.size(),userLoggedIn ));			
+			hs.add(this.createHistoryEntity(departingDate, from, to, listFlightDepartFound.size(), userLoggedIn ));			
 			
 			if(returnSearch){
 				this.listFlightReturnFound=fs.getFlights(to, from, returnDate);
 				hs.add(this.createHistoryEntity(departingDate, to, from, listFlightReturnFound.size(),userLoggedIn ));	
 			}
+			req.setAttribute("departs", listFlightDepartFound);
+			req.setAttribute("returns", listFlightReturnFound);			
+			req.getRequestDispatcher("/flight/flight-search.jsp").forward(req, resp);
 
 		} else
 			resp.sendRedirect("/auth/login.jsp");
@@ -101,8 +104,7 @@ public class AdminFlightSearchServlet extends HttpServlet {
 		hist.setFrom(from);
 		hist.setTo(to);
 		hist.setNbResponse(nbResponse);
-		//hist.setUser(usr);
-		
+		hist.setKey(usr.getKey());		
 		return hist;
 	}
 }
