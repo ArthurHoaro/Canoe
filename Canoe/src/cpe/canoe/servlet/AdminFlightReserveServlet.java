@@ -113,7 +113,7 @@ public class AdminFlightReserveServlet extends HttpServlet {
 			Message msg = new MimeMessage(session);
 			try {
 				msg.setFrom(new InternetAddress(
-						"admin@x5-feisty-vector-4.appspotmail.com", "Admin"));
+						"admin@canoe-flights.appspotmail.com", "Admin"));
 				msg.addRecipient(
 						Message.RecipientType.TO,
 						new InternetAddress(usr.getMail(), "Mr. "

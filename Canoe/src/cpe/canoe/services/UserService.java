@@ -81,9 +81,11 @@ public class UserService extends Service {
         user.setProperty("firstname", usr.getFirstname());
         user.setProperty("lastname", usr.getLastname());
         user.setProperty("birthday", usr.getBirthday());
-        if(newUser)
+        if(newUser) {
         	user.setProperty("registerDate",new Date());
-        
+        	user.setProperty("lastLoginDate", new Date()); 
+        }
+        else
         user.setProperty("lastLoginDate", usr.getLastLoginDate()); 
         user.setProperty("admin", usr.isAdmin());
         return user;
