@@ -25,6 +25,10 @@ import cpe.canoe.services.UserService;
  *
  */
 public class EditProfileServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1806697540384760970L;
 	private UserService uService;
 	private String success;
 	private String error;
@@ -56,6 +60,8 @@ public class EditProfileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		dispatch = req.getRequestDispatcher("/auth/edit.jsp");
+		this.error = null;
+		this.success = null;
 		if( uService.isLoggedIn(req)) {
 			if( req.getParameter("key") != null ) {
 				User user = null;
@@ -65,12 +71,13 @@ public class EditProfileServlet extends HttpServlet {
 					this.error = "Une erreur s'est produite, veuillez vous reconnecter.";
 					this.redirectPost(req, resp);
 				}
-				if( req.getParameter("pass") != null ){
-					if( req.getParameter("pass") == user.getPassword() ) {
-						if( req.getParameter("username") != null ) { user.setUsername(req.getParameter("username")); }
-						if( req.getParameter("firstname") != null ) { user.setFirstname(req.getParameter("firstname")); }
-						if( req.getParameter("lastname") != null ) { user.setLastname(req.getParameter("lastname")); }
-						if( req.getParameter("birthday") != null ) { 
+				System.out.println("POST : \""+ req.getParameter("pass") +"\" - Session : \""+ user.getPassword() +"\"");
+				if( ! req.getParameter("pass").isEmpty() ){
+					if( req.getParameter("pass").equals(user.getPassword()) ) {
+						if( ! req.getParameter("username").isEmpty() ) { user.setUsername(req.getParameter("username")); }
+						if( !req.getParameter("firstname").isEmpty() ) { user.setFirstname(req.getParameter("firstname")); }
+						if( !req.getParameter("lastname").isEmpty()) { user.setLastname(req.getParameter("lastname")); }
+						if( !req.getParameter("birthday").isEmpty() ) { 
 							SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 							try {
 								user.setBirthday(df.parse(req.getParameter("birthday")));
@@ -79,35 +86,31 @@ public class EditProfileServlet extends HttpServlet {
 								this.redirectPost(req, resp);
 							} 
 						}
-						if( req.getParameter("mail") != null ) { user.setMail(req.getParameter("mail")); }
-						if( req.getParameter("newpass") != null && req.getParameter("renewpass") != null ) { 
-							if (req.getParameter("newpass") == req.getParameter("renewpass")) 
+						if( !req.getParameter("mail").isEmpty() ) { user.setMail(req.getParameter("mail")); }
+						if( !req.getParameter("newpass").isEmpty() && !req.getParameter("renewpass").isEmpty() ) { 
+							if (req.getParameter("newpass").equals(req.getParameter("renewpass"))) 
 								user.setPassword(req.getParameter("newpass")); 
 							else {
 								this.error = "Les deux nouveaux mots de passe ne correspondent pas.";
-								this.redirectPost(req, resp);
 							}
 						}
 						
 						if( error == null ) {
-							uService.updateSessionDate(user);
+							uService.updateUser(user);
+							req.getSession().setAttribute("User", user);
 							this.success = "Votre profil a bien été mis à jour.";
-							this.redirectPost(req, resp);
 						}
 					}
 					else {
 						this.error = "Mot de passe incorrect.";
-						this.redirectPost(req, resp);
 					}
 				}
 				else {
 					this.error = "Vous devez vérifier votre mot de passe pour modifier ces informations.";
-					this.redirectPost(req, resp);
 				}
 			}
 			else {
 				this.error = "Une erreur s'est produite, veuillez vous reconnecter.";
-				this.redirectPost(req, resp);
 			}
 			
 			this.redirectPost(req, resp);

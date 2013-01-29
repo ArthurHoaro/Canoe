@@ -20,6 +20,10 @@ import cpe.canoe.model.User;
 import cpe.canoe.services.UserService;
 
 public class AdminUserDeleteServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -11098582423284045L;
 	private UserService uService;
 		
 	public AdminUserDeleteServlet() {

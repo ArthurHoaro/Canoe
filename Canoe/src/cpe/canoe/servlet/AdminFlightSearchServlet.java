@@ -12,6 +12,10 @@ import cpe.canoe.services.UserService;
 
 public class AdminFlightSearchServlet extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4853843620909191960L;
 	private UserService uService;
 	
 	

@@ -10,8 +10,11 @@ import cpe.canoe.model.User;
 import cpe.canoe.services.UserService;
 
 
-@SuppressWarnings("serial")
 public class LogoutServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7554959911943273608L;
 	private UserService uService;
 	
 	public LogoutServlet() {
