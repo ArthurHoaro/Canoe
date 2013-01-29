@@ -9,10 +9,12 @@ import javax.servlet.http.*;
 import cpe.canoe.model.User;
 import cpe.canoe.services.UserService;
 
-
-@SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1538261003394072690L;
 	private String error;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)

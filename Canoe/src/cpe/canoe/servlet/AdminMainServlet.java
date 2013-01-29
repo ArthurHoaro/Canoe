@@ -16,6 +16,10 @@ import cpe.canoe.model.User;
 import cpe.canoe.services.UserService;
 
 public class AdminMainServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5203098254254262281L;
 	private UserService uService;
 	
 	public AdminMainServlet() {

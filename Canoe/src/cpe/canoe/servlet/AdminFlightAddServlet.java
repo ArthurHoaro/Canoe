@@ -17,6 +17,11 @@ import cpe.canoe.services.FlightService;
 import cpe.canoe.services.UserService;
 
 public class AdminFlightAddServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8398873930457816961L;
+
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		RequestDispatcher dispatcher = null;

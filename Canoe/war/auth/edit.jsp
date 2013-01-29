@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
 <z:layout pageTitle="Canoë - Profil - Modifications">
 	<h1>Modification du profil</h1>
@@ -25,37 +26,38 @@
 		<div class="control-group">
 			<label class="control-label" for="pass">Mot de passe <span class="label label-important">Obligatoire</span></label>
 			<div class="controls">
-				<input type="password" id="pass" name="pass" >
+				<input type="password" id="pass" name="pass" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="username">Nom d'utilisateur</label>
 			<div class="controls">
-				<input type="text" id="username"  name="username" >
+				<input type="text" id="username"  name="username" value="${User.username}" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="firstname">Prénom</label>
 			<div class="controls">
-				<input type="text" id="firstname" name="firstname" >
+				<input type="text" id="firstname" name="firstname" value="${User.firstname}" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="lastname">Nom</label>
 			<div class="controls">
-				<input type="text" id="lastname" name="lastname" >
+				<input type="text" id="lastname" name="lastname" value="${User.lastname}" />
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="birthday">Date de naissance <span class="label label-info">(JJ/MM/YYYY)</span></label>
+			<label class="control-label" for="birthday" >Date de naissance <span class="label label-info">(JJ/MM/YYYY)</span></label>
 			<div class="controls">
-				<input type="number" id="birthday" name="birthday" class="datepicker">
+				<fmt:formatDate value="${User.birthday}" pattern="dd/MM/yyyy" var="fBirthday" />
+				<input type="number" id="birthday" name="birthday" class="datepicker" value="${fBirthday}" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="mail">Email</label>
 			<div class="controls">
-				<input type="text" id="mail" name="mail" >
+				<input type="text" id="mail" name="mail"  value="${User.mail}">
 			</div>
 		</div>
 		<div class="control-group">
@@ -81,7 +83,7 @@
 	
 	<script>
 		$(document).ready(function(){	
-	    	$( ".datepicker" ).datepicker({ defaultDate: "-25y", changeYear: true });
+	    	$( ".datepicker" ).datepicker({ defaultDate: "-25y", changeYear: true , dateFormat: "dd/mm/yy" });
 	  	});
   	</script>
 </z:layout>
