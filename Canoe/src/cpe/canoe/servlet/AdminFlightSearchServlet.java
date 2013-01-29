@@ -1,6 +1,9 @@
 package cpe.canoe.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,8 +47,29 @@ public class AdminFlightSearchServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		if( uService.isAdmin(req)) {
-			// TODO
+		if( uService.isLoggedIn(req)) {
+			String from = req.getParameter("leavingFrom");
+			String to = req.getParameter("goingTo");
+			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			Date departingDate= null;
+			Date returnDate =null;
+			try {
+				departingDate = df.parse(req.getParameter("departingDate"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(req.getParameter("return")!=null){
+				 returnDate= null;
+				try {
+					returnDate = df.parse(req.getParameter("returnDate"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}			
+			
+				
 		} 
 		else
 			resp.sendRedirect("/auth/login.jsp");
