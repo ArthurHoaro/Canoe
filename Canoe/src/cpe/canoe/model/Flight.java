@@ -1,5 +1,6 @@
 package cpe.canoe.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
@@ -129,7 +130,11 @@ public class Flight implements IEntity {
 			Long ecart = dateArrivee.getTime() - dateDepart.getTime();
 			dateEcart = new Date(ecart);
 		}
-		return dateEcart;
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateEcart);
+		cal.add(Calendar.HOUR, -1);
+		
+		return cal.getTime();
 	}
 
 }
