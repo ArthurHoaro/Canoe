@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cronentries>
   <cron>
-    <url>/clear-history</url>
-    <description>Delete every user history every 10 minutes</description>
+    <url>/flight/history-clear</url>
+    <description>Delete every user's history every 10 minutes</description>
     <schedule>every 10 minutes</schedule>
-  </cron>
-  <cron>
-    <url>/weeklyreport</url>
-    <description>Mail out a weekly report</description>
-    <schedule>every monday 08:30</schedule>
-    <timezone>America/New_York</timezone>
   </cron>
 </cronentries>

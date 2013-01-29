@@ -136,6 +136,15 @@
 		<url-pattern>/flight/history</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>FlightClearHistory</servlet-name>
+		<servlet-class>cpe.canoe.servlet.HistoryClearServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FlightClearHistory</servlet-name>
+		<url-pattern>/flight/history-clear</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

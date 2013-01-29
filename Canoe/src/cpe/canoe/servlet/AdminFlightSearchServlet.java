@@ -3,6 +3,7 @@ package cpe.canoe.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import cpe.canoe.model.Flight;
 import cpe.canoe.model.History;
@@ -84,11 +87,11 @@ public class AdminFlightSearchServlet extends HttpServlet {
 				this.returnSearch = false;
 			
 			this.listFlightDepartFound = fs.getFlights(from, to,departingDate );
-			hs.add(this.createHistoryEntity(departingDate, from, to, listFlightDepartFound.size(),userLoggedIn ));			
+			hs.add(this.createHistoryEntity(departingDate, from, to, listFlightDepartFound, userLoggedIn ));			
 			
 			if(returnSearch){
 				this.listFlightReturnFound=fs.getFlights(to, from, returnDate);
-				hs.add(this.createHistoryEntity(departingDate, to, from, listFlightReturnFound.size(),userLoggedIn ));	
+				hs.add(this.createHistoryEntity(departingDate, to, from, listFlightReturnFound,userLoggedIn ));	
 			}
 			req.setAttribute("departs", listFlightDepartFound);
 			req.setAttribute("returns", listFlightReturnFound);			
@@ -101,13 +104,22 @@ public class AdminFlightSearchServlet extends HttpServlet {
 			resp.sendRedirect("/auth/login.jsp");
 	}
 	
-	private History createHistoryEntity(Date departure,String from, String to,int nbResponse, User usr){
+	private History createHistoryEntity(Date departure,String from, String to, List<Flight> response, User usr){
 		History hist= new History();
 		hist.setDeparture(departure);
 		hist.setFrom(from);
 		hist.setTo(to);
-		hist.setNbResponse(nbResponse);
-		hist.setKey(usr.getKey());		
+		hist.setNbResponse(response.size());
+		hist.setAvgPrice(this.priceAverage(response));
+		hist.setUser(usr.getUsername());		
 		return hist;
+	}
+	
+	private long priceAverage(List<Flight> response) {
+		int out = 0, i;
+		for( i = 0 ; i < response.size() ; ++i ) {
+			out += response.get(i).getPrice();
+		}
+		return out / i; 
 	}
 }

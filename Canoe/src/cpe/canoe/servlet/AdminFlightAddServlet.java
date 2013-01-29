@@ -84,7 +84,7 @@ public class AdminFlightAddServlet extends HttpServlet {
 					price, availableSeats);
 			flightService.add(flight);
 			addFlightAttributes(req);
-			dispatcher.forward(req, resp);
+			resp.sendRedirect("/admin/flight-add");
 		} else
 			resp.sendRedirect("/auth/login.jsp");
 	}
