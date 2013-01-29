@@ -15,6 +15,9 @@
 		<li>
 			<a href="/flight/flight-search">Recherche</a>
 		</li>
+		<li>
+			<a href="/flight/history">Historique</a>
+		</li>
 	</ul>
 	
 	<form class="form-horizontal" action="/admin/flight-add" method="post">
