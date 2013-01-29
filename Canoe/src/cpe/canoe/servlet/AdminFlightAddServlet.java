@@ -46,6 +46,7 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 			dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
 			
+			// Gestion avec task queue pour ajout d'un vol NOK
 			if( req.getParameter("queue") == "1" ) {
 				SimpleDateFormat parseDateDepart = new java.text.SimpleDateFormat(
 						"dd/MM/yyyy HH:mm");
@@ -122,6 +123,7 @@ public class AdminFlightAddServlet extends HttpServlet {
 			Flight flight = new Flight(dateDepart, dateArrivee, from, to,
 					price, availableSeats);
 			
+			/* Gestion de l'ajout d'un vol via Task Queues NOK
 			if( req.getParameter("queue") == "1" ) {
 				System.out.println("Add Flight");
 				fService.add(flight);
@@ -137,7 +139,10 @@ public class AdminFlightAddServlet extends HttpServlet {
 		        		.param("availableSeats", req.getParameter("availableSeats"))
 		        		.param("queue", "1"));
 			}
-		
+			*/
+			
+			fService.add(flight);
+			
 			addFlightAttributes(req);
 			resp.sendRedirect("/admin/flight-add");       
 		}       
