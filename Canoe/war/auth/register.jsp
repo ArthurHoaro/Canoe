@@ -20,7 +20,7 @@
 	<div class="control-group">
 		<label class="control-label" for="birthday">Birthday (JJ/MM/YYYY)</label>
 		<div class="controls">
-			<input type="number" id="birthday" name="birthday" placeholder="Age">
+			<input type="number" id="birthday" name="birthday" placeholder="Birthday" class="datepicker">
 		</div>
 	</div>
 	<div class="control-group">
@@ -54,4 +54,10 @@
 		</div>
 	</div>
 </form>
+
+	<script>
+		$(document).ready(function(){	
+	    	$( ".datepicker" ).datepicker({ defaultDate: "-25y", changeYear: true });
+	  	});
+  	</script>
 </z:layout>
