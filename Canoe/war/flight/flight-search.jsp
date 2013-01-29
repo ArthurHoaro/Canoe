@@ -2,16 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <z:layout pageTitle="Gestion des vols">
 	<!-- Onglet Ajout ou Recherche -->
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs">		
+		<c:if test="${admin}">
 		<li>
 			<a href="/admin/flight-add">Ajout</a>
 		</li>
+		</c:if>
 		<!-- Zone de recherche d'un vol -->
 		<li class="active">
-			<a href="/admin/flight-search">Recherche</a>
+			<a href="/flight/flight-search">Recherche</a>
 		</li>
 	</ul>
 	
