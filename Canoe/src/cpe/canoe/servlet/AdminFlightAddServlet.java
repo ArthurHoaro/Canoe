@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sun.util.logging.resources.logging;
+
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
@@ -43,6 +45,37 @@ public class AdminFlightAddServlet extends HttpServlet {
 			RequestDispatcher dispatcher = null;
 
 			dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
+			
+			if( req.getParameter("queue") == "1" ) {
+				SimpleDateFormat parseDateDepart = new java.text.SimpleDateFormat(
+						"dd/MM/yyyy HH:mm");
+				SimpleDateFormat parseDateArrivee = new java.text.SimpleDateFormat(
+						"dd/MM/yyyy HH:mm");
+				Date dateDepart = null;
+				Date dateArrivee = null;
+				try {
+					dateDepart = parseDateDepart.parse(req
+							.getParameter("departing"));
+					dateArrivee = parseDateArrivee.parse(req
+							.getParameter("arrivalTime"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				String from = req.getParameter("leavingFrom");
+				String to = req.getParameter("goingTo");
+				float price = Float.parseFloat(req.getParameter("price"));
+				int availableSeats = Integer.parseInt(req
+						.getParameter("availableSeats"));
+	
+				Flight flight = new Flight(dateDepart, dateArrivee, from, to,
+						price, availableSeats);
+			
+			
+				System.out.println("Add Flight");
+				fService.add(flight);
+			}
 
 			addFlightAttributes(req);
 			
