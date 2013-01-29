@@ -1,17 +1,18 @@
 package cpe.canoe.model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 public class Booking implements IEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3210356911756106173L;
+	private static final long serialVersionUID = -245800182022719306L;
+	/**
+	 * 
+	 */
 	private String key;
 	private String userKey;
 	private String flightKey; 
@@ -19,8 +20,7 @@ public class Booking implements IEntity {
 	private Date date;
 	
 	public Booking()
-	{
-		
+	{		
 	}	
 	
 	public Booking(String userKey, String flightKey) {
@@ -47,7 +47,7 @@ public class Booking implements IEntity {
 		this.key = KeyFactory.keyToString(e.getKey());
 		this.flightKey = (String) e.getProperty("flightKey");
 		this.userKey = (String) e.getProperty("userKey");
-		this.numberOfSeats = (Integer) e.getProperty("numberOfSeats");
+		this.numberOfSeats = (Integer) ((Long)e.getProperty("numberOfSeats")).intValue();
 		this.date = (Date) e.getProperty("date");
 	}
 

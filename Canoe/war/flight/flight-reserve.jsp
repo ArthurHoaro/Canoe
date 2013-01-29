@@ -5,7 +5,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <z:layout pageTitle="Gestion des vols">
-	<h1>Flight Reservation</h1>
+	
+	<c:if test="${cons == true}">
+		<h1>Flight Details</h1>
+	</c:if>
+	<c:if test="${cons == false }">
+		<h1>Flight Reservation</h1>
+	</c:if>
 	<hr />
 	<div class="Well">
 		<table class="table table-striped table-bordered table-hover">
@@ -37,12 +43,14 @@
 		</table>
 	</div>
 
-	<form class="form-horizontal" action="/flight/flight-reserve"
-		method="post">
-		<button class="btn btn-success span2" type="submit" id="confirm">
-			<i class="icon-check icon-white"></i> Confirm
-		</button>
-	</form>
+	<c:if test="${cons == false}">
+		<form class="form-horizontal" action="/flight/flight-reserve"
+			method="post">		
+			<button class="btn btn-success span2 offset9" type="submit" id="confirm">
+				<i class="icon-check icon-white"></i> Confirm
+			</button>
+		</form>
+	</c:if>
 
 
 	<script>

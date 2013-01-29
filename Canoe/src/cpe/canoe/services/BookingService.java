@@ -35,7 +35,7 @@ public class BookingService extends Service {
 	
 	public ArrayList<Booking> findAllFromUser(User user) {
 		ArrayList<Booking> list = new ArrayList<Booking>();
-		Query q = new Query(this.entityName).addFilter("userKey", Query.FilterOperator.EQUAL, user.getUsername());
+		Query q = new Query(this.entityName).addFilter("userKey", Query.FilterOperator.EQUAL, user.getKey());
 		PreparedQuery pq = this.getDBInstance().prepare(q);
 		for(Entity en : pq.asList(FetchOptions.Builder.withDefaults()) )
 			list.add(new Booking(en));	

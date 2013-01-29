@@ -22,8 +22,4 @@
 	</div>
 
 </z:layout>
-<%-- 
-<%@include file="template/header.html" %>
 
-
-<%@include file="template/footer.html" %> --%>
