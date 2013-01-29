@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <z:layout pageTitle="Gestion des vols">
 	<!-- Onglet Ajout ou Recherche -->
@@ -28,10 +29,10 @@
 				</div>
 				<div class="span3">
 					<div class="control-group">
-						<input required="required" type="text" id="departing" name="departing" class="datepicker" placeholder="Departing">
+						<input required="required" type="text" id="departing" name="departing" class="datetimepicker" placeholder="Departing">
 					</div>
 					<div class="control-group">
-						<input required="required" type="text" id="arrivalTime" name="arrivalTime" class="datepicker" placeholder="Arrival Time">
+						<input required="required" type="text" id="arrivalTime" name="arrivalTime" class="datetimepicker" placeholder="Arrival Time">
 					</div>
 				</div>
 				<div class="span3">
@@ -65,10 +66,11 @@
 	       </tr>
    		</THEAD>
    		<TBODY>
-   			<c:forEach items="${requestScope['flightList']}" var="flight">
+   			<c:forEach items="${requestScope['flightList']}" var="flight" varStatus="status">
    				<TR>
 					<TD>
-						${flight.dateDepart}
+						<fmt:formatDate value="${flight.dateDepart}" pattern="dd/MM/yyyy" var="dateDepartFlight" />
+						${ dateDepartFlight }
 					</TD>
 					<TD>
 						${flight.from}
@@ -77,7 +79,8 @@
 						${flight.to}
 					</TD>
 					<TD>
-						<p>TODO:Date Ecart</p>
+						<fmt:formatDate value="${flight.duration}" pattern="dd' jours et' HH'h'mm" var="duration" />
+						${ duration }
 					</TD>
 					<TD>
 						${ flight.availableSeats }
@@ -96,7 +99,8 @@
 	</table>
 	<script>
 		$(document).ready(function(){	
-	    	$( ".datepicker" ).datepicker();
+	    	$( ".datetimepicker" ).datetimepicker();
+	    	$( ".timepicker" ).timepicker();
 	  	});
   	</script>
 </z:layout>

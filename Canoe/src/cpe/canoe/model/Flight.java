@@ -9,6 +9,7 @@ public class Flight implements IEntity {
 	private Key key;
 	private Date dateDepart;
 	private Date dateArrivee;
+	private Date duration;
 	private String from;
 	private String to;
 	private float price;
@@ -19,6 +20,7 @@ public class Flight implements IEntity {
 	{
 		this.dateDepart = dateDepart;
 		this.dateArrivee = dateArrivee;
+		this.duration = this.getDuration(dateDepart, dateArrivee);
 		this.from = from;
 		this.to = to;
 		this.price = price;
@@ -39,6 +41,7 @@ public class Flight implements IEntity {
 		this.key = e.getKey();
 		this.dateDepart = (Date) e.getProperty("dateDepart");
 		this.dateArrivee = (Date) e.getProperty("dateArrivee");
+		this.duration = this.getDuration(dateDepart, dateArrivee);
 		this.from = (String) e.getProperty("from");
 		this.to = (String) e.getProperty("to");
 		this.price = Float.parseFloat(e.getProperty("price").toString());
@@ -99,6 +102,29 @@ public class Flight implements IEntity {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	
+	public Date getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Date duration) {
+		this.duration = duration;
+	}
+
+	private Date getDuration(Date dateDepart, Date dateArrivee)
+	{
+		Date dateEcart = null;
+		if(dateDepart == null || dateArrivee == null)
+		{
+			
+		}
+		else
+		{
+			Long ecart = dateArrivee.getTime() - dateDepart.getTime();
+			dateEcart = new Date(ecart);
+		}
+		return dateEcart;
 	}
 
 }

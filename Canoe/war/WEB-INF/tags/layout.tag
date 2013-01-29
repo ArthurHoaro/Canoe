@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/css/style.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+<script src="/js/timepicker.js"></script>
 </head>
 <body>
 	<div class="navbar">

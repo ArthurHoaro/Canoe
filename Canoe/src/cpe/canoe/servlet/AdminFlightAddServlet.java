@@ -3,6 +3,8 @@ package cpe.canoe.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.persistence.criteria.From;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cpe.canoe.model.Flight;
+import cpe.canoe.model.IEntity;
 import cpe.canoe.services.FlightService;
 import cpe.canoe.services.UserService;
 
@@ -34,10 +37,8 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 			dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
 
-			FlightService flightService = new cpe.canoe.services.FlightService();
-
-			req.setAttribute("flightList", flightService.findAll());
-
+			addFlightAttributes(req);
+			
 			try {
 				dispatcher.forward(req, resp);
 			} catch (ServletException e) {
@@ -57,19 +58,22 @@ public class AdminFlightAddServlet extends HttpServlet {
 			dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
 
 			FlightService flightService = new cpe.canoe.services.FlightService();
-			SimpleDateFormat parseDate = new java.text.SimpleDateFormat(
-					"dd/MM/yyyy");
+			SimpleDateFormat parseDateDepart = new java.text.SimpleDateFormat(
+					"dd/MM/yyyy HH:mm");
+			SimpleDateFormat parseDateArrivee = new java.text.SimpleDateFormat(
+					"dd/MM/yyyy HH:mm");
 			Date dateDepart = null;
 			Date dateArrivee = null;
 			try {
-				dateDepart = (Date) parseDate.parse(req
+				dateDepart = parseDateDepart.parse(req
 						.getParameter("departing"));
-				dateArrivee = (Date) parseDate.parse(req
+				dateArrivee = parseDateArrivee.parse(req
 						.getParameter("arrivalTime"));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			String from = req.getParameter("leavingFrom");
 			String to = req.getParameter("goingTo");
 			float price = Float.parseFloat(req.getParameter("price"));
@@ -79,9 +83,50 @@ public class AdminFlightAddServlet extends HttpServlet {
 			Flight flight = new Flight(dateDepart, dateArrivee, from, to,
 					price, availableSeats);
 			flightService.addFlight(flight);
-
+			
+			addFlightAttributes(req);
+			
 			dispatcher.forward(req, resp);
 		} else
 			resp.sendRedirect("/auth/login.jsp");
+	}
+	
+	private void addFlightAttributes(HttpServletRequest req)
+	{
+		FlightService flightService = new cpe.canoe.services.FlightService();
+		ArrayList<IEntity> allFlights = flightService.findAll();
+		
+		// On va chercher tous les avions pour afficher
+		req.setAttribute("flightList", allFlights);
+		
+		// On cherche tous les écarts
+		ArrayList<Date> dateEcartList = dateEcartList(allFlights);
+		req.setAttribute("dateEcartList", dateEcartList);
+	}
+	
+	private ArrayList<Date> dateEcartList(ArrayList<IEntity> flightArray)
+	{
+		ArrayList<Date> listDateEcart = new ArrayList<Date>();
+		for(IEntity entityFlight : flightArray)
+		{
+			Flight flight = (Flight) entityFlight;
+			listDateEcart.add(dateEcart(flight.getDateDepart(), flight.getDateArrivee()));
+		}
+		return listDateEcart;
+	}
+	
+	private Date dateEcart(Date dateDepart, Date dateArrivee)
+	{
+		Date dateEcart = null;
+		if(dateDepart == null || dateArrivee == null)
+		{
+			
+		}
+		else
+		{
+			Long ecart = dateArrivee.getTime() - dateDepart.getTime();
+			dateEcart = new Date(ecart);
+		}
+		return dateEcart;
 	}
 }
