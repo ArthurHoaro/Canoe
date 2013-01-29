@@ -20,7 +20,7 @@
 		</li>
 	</ul>
 
-	<form class="form-horizontal" action="/admin/flight-search"
+	<form class="form-horizontal" action="/flight/flight-search"
 		method="post">
 
 
@@ -68,9 +68,8 @@
 
 	</form>
 
-	<span class="divider"></span>
-	
-	<h2>From :  </h2>
+	<hr />
+	<h3>From :  </h3>
 	<div class="Well">	
 	<table class="table table-striped table-bordered">
 		<THEAD>
@@ -86,6 +85,35 @@
 		</THEAD>
 		<TBODY>
 		<c:forEach var="entry" items="${requestScope['listFlightDepartFound']}">
+			<tr>
+				<TD ${entry.dateDepart }/>
+				<TD ${entry.from }/>
+				<TD ${entry.to }/>
+				<TD />
+				<TD ${entry.availableSeats }/>
+				<TD ${entry.price }/>
+			</tr>
+		</c:forEach>
+		</TBODY>
+	</table>
+	</div>
+	<!-- RETURN -->
+	<h3>Return ==> From :  </h3>
+	<div class="Well">	
+	<table class="table table-striped table-bordered">
+		<THEAD>
+			<tr>
+				<th>Date</th>
+				<th>Departure Town</th>
+				<th>Arrival Town</th>
+				<th>Flight duration</th>
+				<th>Available seats</th>
+				<th>Price</th>
+				<th></th>
+			</tr>
+		</THEAD>
+		<TBODY>
+		<c:forEach var="entry" items="${requestScope['listFlightReturnFound']}">
 			<tr>
 				<TD ${entry.dateDepart }/>
 				<TD ${entry.from }/>
