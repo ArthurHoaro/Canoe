@@ -20,7 +20,7 @@
 				<a class="brand" href="/index.jsp">Canoë</a>
 				<ul class="nav">
 					<li><a href="/index.jsp">Home</a></li>
-					<li><a href="#">Link</a></li>
+					<li><a href="/flight/flight-search">Find a Flight</a></li>
 					<li><a href="#">Link</a></li>
 					<c:if test="${User.admin == true}">
 						<li><a href="/admin/index">Administration</a></li>
