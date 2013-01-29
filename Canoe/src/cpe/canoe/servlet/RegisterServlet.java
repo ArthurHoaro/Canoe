@@ -66,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
 				usr.setPassword(req.getParameter("pass"));
 			else
 				usr.setPassword(pass);
-			usrService.addUser(usr);
+			usrService.add(usr);
 			Properties props = new Properties();
 			Session session = Session.getDefaultInstance(props, null);
 

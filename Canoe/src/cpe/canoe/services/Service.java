@@ -69,6 +69,14 @@ public abstract class Service {
 		this.getDBInstance().delete(key);
 	}
 	
+	public void add(IEntity en) {
+		this.getDBInstance().put(this.ormToEntity(en, true));
+	}
+	public void update(IEntity en) {
+		this.getDBInstance().put(this.ormToEntity(en, false));
+	}
+	protected abstract Entity ormToEntity(IEntity en, boolean newEntity);
+	
 	public final DatastoreService getDBInstance() {
 		return DatastoreServiceFactory.getDatastoreService();
 	}

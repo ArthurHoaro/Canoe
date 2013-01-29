@@ -39,7 +39,7 @@ public class NewPasswordServlet extends HttpServlet {
 		if(pass.equals(repass)){
 			if(usr!=null){
 				usr.setPassword(pass);
-				userService.updateUser(usr);
+				userService.update(usr);
 				userService.updateSessionDate(usr);				
 				resp.sendRedirect("/user/user.jsp");
 			}	

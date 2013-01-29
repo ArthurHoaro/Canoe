@@ -14,6 +14,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
+import cpe.canoe.model.IEntity;
 import cpe.canoe.model.User;
 
 public class UserService extends Service {
@@ -40,11 +41,11 @@ public class UserService extends Service {
 		return usr;
 	}
 	
-	public void addUser(User usr){
+	public void add(IEntity usr){
         this.getDBInstance().put(this.ormToEntity(usr, true));
 	}
 	
-	public void updateUser(User usr){
+	public void update(IEntity usr){
 		this.getDBInstance().put(this.ormToEntity(usr, false));
 	}
 
@@ -61,8 +62,9 @@ public class UserService extends Service {
 		
 	}
 	
-	private Entity ormToEntity(User usr, boolean newUser) {
+	protected Entity ormToEntity(IEntity iusr, boolean newUser) {
 		Entity user = null;
+		User usr = (User) iusr;
 		if( newUser ) {
 			Key ukey = KeyFactory.createKey("Username", usr.getUsername());
 	        user = new Entity("User", ukey);
@@ -81,7 +83,7 @@ public class UserService extends Service {
         user.setProperty("birthday", usr.getBirthday());
         if(newUser)
         	user.setProperty("registerDate",new Date());
-        user.setProperty("lastLoginDate",new Date()); 
+        user.setProperty("lastLoginDate", usr.getLastLoginDate()); 
         user.setProperty("admin", usr.isAdmin());
         return user;
 	}

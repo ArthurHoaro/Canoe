@@ -96,7 +96,7 @@ public class EditProfileServlet extends HttpServlet {
 						}
 						
 						if( error == null ) {
-							uService.updateUser(user);
+							uService.update(user);
 							req.getSession().setAttribute("User", user);
 							this.success = "Votre profil a bien été mis à jour.";
 						}
