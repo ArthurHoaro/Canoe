@@ -85,6 +85,14 @@
 		<servlet-name>flightAdminSearch</servlet-name>
 		<url-pattern>/flight/flight-search</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>flightAdminDelete</servlet-name>
+		<servlet-class>cpe.canoe.servlet.AdminFlightDeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>flightAdminDelete</servlet-name>
+		<url-pattern>/flight/flight-delete</url-pattern>
+	</servlet-mapping>
 
 
 
