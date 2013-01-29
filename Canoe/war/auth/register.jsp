@@ -49,7 +49,7 @@
 	</div>
 	<div class="control-group">
 		<div class="controls">		
-			<button type="submit" class="btn">Cancel</button>
+			<a href="/" class="btn">Cancel</a>
 			<button type="submit" class="btn">Register</button>
 		</div>
 	</div>

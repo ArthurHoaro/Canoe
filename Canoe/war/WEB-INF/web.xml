@@ -37,6 +37,15 @@
 		<url-pattern>/auth/edit</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>NewPassword</servlet-name>
+		<servlet-class>cpe.canoe.servlet.NewPasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewPassword</servlet-name>
+		<url-pattern>/auth/newpassword</url-pattern>
+	</servlet-mapping>
+	
 	<listener>
 		<listener-class>cpe.canoe.listener.SessionCounterListener</listener-class>
 	</listener>
