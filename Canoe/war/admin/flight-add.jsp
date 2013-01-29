@@ -70,6 +70,8 @@
    		</THEAD>
    		<TBODY>
    			<c:forEach items="${requestScope['flightList']}" var="flight" varStatus="status">
+   				<form action="/flight/flight-delete" method="post">
+   				<input type="hidden" value="${ flight.key }" name="flightKey">
    				<TR>
 					<TD>
 						<fmt:formatDate value="${flight.dateDepart}" pattern="dd/MM/yyyy" var="dateDepartFlight" />
@@ -92,11 +94,14 @@
 						${ flight.price }
 					</TD>
 					<TD>
-						<input type="submit">
-							<i class="icon-remove"></i>
-						</input>
+						
+							<button type="submit" class="btn btn-danger">
+							  <i class="icon-remove"></i>
+							</button>
+						
 					</TD>
 				</TR>
+				</form>
    			</c:forEach>
    		</TBODY>
 	</table>
