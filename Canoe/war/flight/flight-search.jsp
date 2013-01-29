@@ -4,6 +4,9 @@
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <z:layout pageTitle="Gestion des vols">
+	<h1>Search a Flight</h1>
+	<hr />
+	
 	<!-- Onglet Ajout ou Recherche -->
 	<ul class="nav nav-tabs">
 		<c:if test="${admin}">
@@ -63,7 +66,9 @@
 	</form>
 
 	<span class="divider"></span>
-
+	
+	<h2>From :  </h2>
+	<div class="Well">	
 	<table class="table table-striped table-bordered">
 		<THEAD>
 			<tr>
@@ -77,9 +82,19 @@
 			</tr>
 		</THEAD>
 		<TBODY>
+		<c:forEach var="entry" items="${requestScope['listFlightDepartFound']}">
+			<tr>
+				<TD ${entry.dateDepart }/>
+				<TD ${entry.from }/>
+				<TD ${entry.to }/>
+				<TD />
+				<TD ${entry.availableSeats }/>
+				<TD ${entry.price }/>
+			</tr>
+		</c:forEach>
 		</TBODY>
 	</table>
-
+	</div>
 	<script>
 		$(document).ready(function(){	
 	    	$( ".datepicker" ).datepicker();
