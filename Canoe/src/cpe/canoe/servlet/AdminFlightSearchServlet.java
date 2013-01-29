@@ -25,10 +25,10 @@ public class AdminFlightSearchServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		if( uService.isAdmin(req)) {
+		if( uService.isLoggedIn(req)) {
 			RequestDispatcher dispatcher = null;
-			
-			dispatcher = req.getRequestDispatcher("/admin/flight-search.jsp");	
+			req.setAttribute("admin", uService.isAdmin(req));
+			dispatcher = req.getRequestDispatcher("/flight/flight-search.jsp");	
 			
 			try {
 				dispatcher.forward(req, resp);

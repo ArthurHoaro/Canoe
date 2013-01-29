@@ -83,7 +83,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>flightAdminSearch</servlet-name>
-		<url-pattern>/admin/flight-search</url-pattern>
+		<url-pattern>/flight/flight-search</url-pattern>
 	</servlet-mapping>
 
 
