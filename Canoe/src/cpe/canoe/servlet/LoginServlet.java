@@ -27,9 +27,15 @@ public class LoginServlet extends HttpServlet {
 		UserService userService = new cpe.canoe.services.UserService();
 		User usr=
 		userService.getUser(req.getParameter("username"), req.getParameter("pass"));
-		if(usr!=null){			
+		if(usr!=null){
 			HttpSession session= req.getSession();
 			session.setAttribute("User", usr);
+			if(usr.getLastLoginDate().equals(usr.getRegisterDate())){
+				//todo
+				resp.sendRedirect("/auth/newPassword.jsp");
+			}
+				
+			
 			userService.updateSessionDate(usr);
 			resp.sendRedirect("/user/user.jsp");
 		}

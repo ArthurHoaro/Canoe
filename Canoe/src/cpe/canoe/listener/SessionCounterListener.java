@@ -14,6 +14,11 @@ import javax.servlet.http.HttpSessionListener;
  */
 public final class SessionCounterListener implements HttpSessionListener, Serializable {
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6832482491615909076L;
 	private int nbSession = 0;
     
 	public void sessionCreated(HttpSessionEvent event) {
