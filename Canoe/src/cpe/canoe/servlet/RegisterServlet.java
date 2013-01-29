@@ -111,7 +111,7 @@ public class RegisterServlet extends HttpServlet {
 			resp.sendRedirect("/auth/register-ok.jsp");
 		}
 		else 
-			resp.sendRedirect("/auth/register.jsp?error");
+			resp.sendRedirect("/auth/register-ok.jsp");
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class RegisterServlet extends HttpServlet {
 		usr.setFirstname(req.getParameter("firstname"));
 		usr.setLastname(req.getParameter("lastname"));
 		usr.setUsername(req.getParameter("username"));
-		SimpleDateFormat df = new SimpleDateFormat("dd%2FMM%2Fyyyy");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		Date d = null;
 		try {
 			d = df.parse(req.getParameter("birthday"));
@@ -186,10 +186,10 @@ public class RegisterServlet extends HttpServlet {
 					.param("pass", req.getParameter("pass"))
 					.param("repass", req.getParameter("repass"))
 					.param("queue", "1"));
-			resp.sendRedirect("/auth/register-ok.jsp");
+			
 		}
 		else 
-			resp.sendRedirect("/auth/register.jsp?error");
+			resp.sendRedirect("/auth/register-ok.jsp");
 		
 	}
 }
