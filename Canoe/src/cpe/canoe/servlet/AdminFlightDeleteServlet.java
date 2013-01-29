@@ -27,21 +27,18 @@ public class AdminFlightDeleteServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-		
+		resp.sendRedirect("/admin/flight-add");
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = null;
-
 		if( uService.isAdmin(req) ) {
 			if( !req.getParameter("flightKey").isEmpty() ) {
 				System.out.println("delete");
 				fService.remove(KeyFactory.stringToKey(req.getParameter("flightKey")));
 			}
 		}
-		dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
-		dispatcher.forward(req, resp);
+		resp.sendRedirect("/admin/flight-add");
 	}
 }
