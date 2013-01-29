@@ -91,13 +91,13 @@
 			<TBODY>
 				<c:forEach var="entry" items="${departs}">
 					<tr class="entryFirstTable">
-						<fmt:formatDate value="${entry.duration}" pattern="dd/MM/yy HH:mm" var="fDate2" />
+						<fmt:formatDate value="${entry.dateDepart}" pattern="dd/MM/yy HH:mm" var="fDate2" />
 						<td>${fDate2 }</td>
 						<td>${entry.from }</td>
 						<td>${entry.to }</td>
 												
 						<td>
-							<fmt:formatDate value="${entry.duration}" pattern="dd' jours et' HH'h'mm" var="duration" />
+							<fmt:formatDate value="${entry.duration}" pattern="HH:mm" var="duration" />
 							${duration }
 						</td>
 						<td>${entry.availableSeats }</td>
@@ -127,12 +127,12 @@
 				<TBODY>
 					<c:forEach var="entry" items="${requestScope['returns']}">
 						<tr>
-							<fmt:formatDate value="${entry.duration}" pattern="dd/MM/yy HH:mm" var="fDate1" />
+							<fmt:formatDate value="${entry.dateDepart}" pattern="dd/MM/yy HH:mm" var="fDate1" />
 							<td>${fDate1 }</td>
 							<td>${entry.from }</td>
 							<td>${entry.to }</td>
 							<td>
-								<fmt:formatDate value="${entry.duration}" pattern="dd' jours et' HH'h'mm" var="duration" />
+								<fmt:formatDate value="${entry.duration}" pattern="HH:mm" var="duration" />
 								${duration}
 							</td>
 							<td>${entry.availableSeats }</td>

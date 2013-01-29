@@ -29,11 +29,15 @@
 			<TBODY>
 
 				<tr>
-					<td>${flight.dateDepart }</td>
+					
+					<td>
+					<fmt:formatDate value="${flight.dateDepart}" pattern="dd/MM/yyyy" var="dateDepartFlight" />
+						${ dateDepartFlight }
+					</td>
 					<td>${flight.from }</td>
 					<td>${flight.to }</td>
 					<td><fmt:formatDate value="${flight.duration}"
-							pattern="dd' jours et' HH'h'mm" var="duration" /> ${duration }</td>
+							pattern="HH:mm" var="duration" /> ${duration }</td>
 					<td>${flight.availableSeats }</td>
 					<td>${flight.price } €</td>
 
