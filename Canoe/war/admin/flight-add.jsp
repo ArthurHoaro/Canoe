@@ -84,14 +84,14 @@
 						${flight.to}
 					</TD>
 					<TD>
-						<fmt:formatDate value="${flight.duration}" pattern="HH'h'mm" var="duration" />
+						<fmt:formatDate value="${flight.duration}" pattern="HH:mm" var="duration" />
 						${ duration }
 					</TD>
 					<TD>
 						${ flight.availableSeats }
 					</TD>
 					<TD>
-						${ flight.price }
+						${ flight.price } €
 					</TD>
 					<TD>
 						

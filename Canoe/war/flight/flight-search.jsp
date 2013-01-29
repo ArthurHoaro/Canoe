@@ -9,7 +9,7 @@
 	
 	<!-- Onglet Ajout ou Recherche -->
 	<ul class="nav nav-tabs">
-		<c:if test="${admin}">
+		<c:if test="${User.admin}">
 			<li><a href="/admin/flight-add">Ajout</a></li>
 		</c:if>
 		<!-- Zone de recherche d'un vol -->

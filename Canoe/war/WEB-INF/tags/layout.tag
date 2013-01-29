@@ -22,7 +22,6 @@
 				<ul class="nav">
 					<li><a href="/index.jsp">Home</a></li>
 					<li><a href="/flight/flight-search">Find a Flight</a></li>
-					<li><a href="#">Link</a></li>
 					<c:if test="${User.admin == true}">
 						<li><a href="/admin/index">Administration</a></li>
 					</c:if>
@@ -37,9 +36,9 @@
 					<div class="nav pull-right">			
 						<ul class="nav">
 							<li>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<div class="dropdown-toggle btn btn-primary" data-toggle="dropdown">
 										Bienvenue ${User.firstname} !
-								</a>
+								</div>
 								<ul class="dropdown-menu">
 									<li><a href="#" style="cursor: default;">Connecté depuis <%= ((int)(((new java.util.Date()).getTime()/60000) - (((cpe.canoe.model.User) request.getSession().getAttribute("User")).getLastLoginDate().getTime()/60000)))%> minutes</a></li>
 									<%
@@ -47,7 +46,7 @@
 									%>
 									<li><a href="#" style="cursor: default;"><%= counter.getNb() %> utilisateurs connectés</a></li>
 									<li><a href="/auth/edit">Gérer mon profil</a></li>
-									<li><a href="#">Historique des recherches</a></li>
+									<li><a href="/flight/history">Historique des recherches</a></li>
 								</ul>
 							</li>
 						</ul>
