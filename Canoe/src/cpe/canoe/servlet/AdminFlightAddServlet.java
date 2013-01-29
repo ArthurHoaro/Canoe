@@ -78,7 +78,7 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 			Flight flight = new Flight(dateDepart, dateArrivee, from, to,
 					price, availableSeats);
-			flightService.addFlight(flight);
+			flightService.add(flight);
 
 			dispatcher.forward(req, resp);
 		} else
