@@ -37,7 +37,7 @@ public class AdminUserServlet extends HttpServlet {
 				try {
 					User user = (User) uService.findByKey(KeyFactory.stringToKey((String) req.getParameter("adm")));
 					user.toggleAdmin();
-					uService.updateUser(user);
+					uService.update(user);
 				} catch (EntityNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -13,7 +13,7 @@
 		</li>
 		<!-- Zone de recherche d'un vol -->
 		<li>
-			<a href="/admin/flight-search">Recherche</a>
+			<a href="/flight/flight-search">Recherche</a>
 		</li>
 	</ul>
 	

@@ -32,7 +32,7 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		if (uService.isLoggedIn(req)) {
+		if (uService.isAdmin(req)) {
 			RequestDispatcher dispatcher = null;
 
 			dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
@@ -82,10 +82,8 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 			Flight flight = new Flight(dateDepart, dateArrivee, from, to,
 					price, availableSeats);
-			flightService.addFlight(flight);
-			
+			flightService.add(flight);
 			addFlightAttributes(req);
-			
 			dispatcher.forward(req, resp);
 		} else
 			resp.sendRedirect("/auth/login.jsp");

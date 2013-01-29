@@ -39,10 +39,15 @@ public class NewPasswordServlet extends HttpServlet {
 		if(pass.equals(repass)){
 			if(usr!=null){
 				usr.setPassword(pass);
-				userService.updateUser(usr);
+				userService.update(usr);
 				userService.updateSessionDate(usr);				
 				resp.sendRedirect("/user/user.jsp");
 			}	
+		}
+		else{	
+			error= new String("Passwords have to be the same !");
+			req.setAttribute("error", error);
+			req.getRequestDispatcher("/auth/newPassword.jsp").forward(req, resp);			
 		}
 			
 

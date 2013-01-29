@@ -4,9 +4,14 @@ import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class Flight implements IEntity {
-	private Key key;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3210356911756106173L;
+	private String key;
 	private Date dateDepart;
 	private Date dateArrivee;
 	private Date duration;
@@ -38,7 +43,7 @@ public class Flight implements IEntity {
 	
 	@Override
 	public void init(Entity e) {
-		this.key = e.getKey();
+		this.key = KeyFactory.keyToString(e.getKey());
 		this.dateDepart = (Date) e.getProperty("dateDepart");
 		this.dateArrivee = (Date) e.getProperty("dateArrivee");
 		this.duration = this.getDuration(dateDepart, dateArrivee);
@@ -56,11 +61,11 @@ public class Flight implements IEntity {
 		this.availableSeats = availableSeats;
 	}
 
-	public Key getKey() {
+	public String getKey() {
 		return key;
 	}
 
-	public void setKey(Key key) {
+	public void setKey(String key) {
 		this.key = key;
 	}
 
