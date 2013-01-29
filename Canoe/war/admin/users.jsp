@@ -44,7 +44,7 @@
 	    			<td>${user.firstname} ${user.lastname}</td>
 	    			<td>${user.registerDate}</td>
 	    			<td>${user.lastLoginDate}</td>
-	    			<td><a href="/admin/users?adm=${User.key}" title="Toggle admin">
+	    			<td><a href="/admin/users?adm=${user.key}" title="Toggle admin">
 	    				<c:if test="${user.admin == true}">
 	    					<i class="icon-ok"></i>
 	    				</c:if>

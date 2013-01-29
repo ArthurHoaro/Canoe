@@ -32,10 +32,10 @@ public class AdminUserServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-		if( uService.isAdmin(req) ) {		
-			if( req.getAttribute("adm") != null ) {
+		if( uService.isAdmin(req) ) {			
+			if( req.getParameter("adm") != null && !req.getParameter("adm").equals(((User)req.getSession().getAttribute("User")).getKey())) {
 				try {
-					User user = (User) uService.findByKey(KeyFactory.stringToKey((String) req.getAttribute("adm")));
+					User user = (User) uService.findByKey(KeyFactory.stringToKey((String) req.getParameter("adm")));
 					user.toggleAdmin();
 					uService.updateUser(user);
 				} catch (EntityNotFoundException e) {
