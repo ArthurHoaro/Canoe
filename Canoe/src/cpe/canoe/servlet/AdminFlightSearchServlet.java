@@ -92,6 +92,9 @@ public class AdminFlightSearchServlet extends HttpServlet {
 			}
 			req.setAttribute("departs", listFlightDepartFound);
 			req.setAttribute("returns", listFlightReturnFound);			
+			req.setAttribute("from", from);
+			req.setAttribute("to", to);
+			req.setAttribute("isReturn", returnSearch);
 			req.getRequestDispatcher("/flight/flight-search.jsp").forward(req, resp);
 
 		} else
