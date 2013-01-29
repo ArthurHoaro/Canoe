@@ -17,6 +17,11 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
+
 import cpe.canoe.model.User;
 import cpe.canoe.services.UserService;
 
@@ -33,17 +38,12 @@ public class RegisterServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		if (!uService.isLoggedIn(req) || uService.isAdmin(req)) {
+		if (req.getParameter("queue") == "1") {
 			UserService usrService = new UserService();
 			User usr = new User();
 			String pass = Long.toHexString(Double.doubleToLongBits(Math
 					.random()));
+			
 			usr.setFirstname(req.getParameter("firstname"));
 			usr.setLastname(req.getParameter("lastname"));
 			usr.setUsername(req.getParameter("username"));
@@ -74,7 +74,8 @@ public class RegisterServlet extends HttpServlet {
 					+ usr.getFirstname()
 					+ ":Your Canoë account has been approved.  You can now visit "
 					+ "http://x5-feisty-vector-4.appspot.com and sign in using your login and this generated password : "
-					+ usr.getPassword() + " to " + "access your new features."
+					+ usr.getPassword() + " to "
+					+ "access your new features."
 					+ "Please let us know if you have any questions."
 					+ "The Canoë Team.";
 			try {
@@ -84,11 +85,11 @@ public class RegisterServlet extends HttpServlet {
 				msg.addRecipient(
 						Message.RecipientType.TO,
 						new InternetAddress(usr.getMail(), "Mr. "
-								+ usr.getFirstname() + " " + usr.getLastname()));
+								+ usr.getFirstname() + " "
+								+ usr.getLastname()));
 				msg.setSubject("Your Canoe account has been activated");
 				msg.setText(msgBody);
 				Transport.send(msg);
-				resp.sendRedirect("/auth/register-ok.jsp");
 
 			} catch (AddressException e) {
 				// ...
@@ -96,8 +97,24 @@ public class RegisterServlet extends HttpServlet {
 				// ...
 			}
 		}
-		else
-			resp.sendRedirect("/auth/login.jsp");
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		if (!uService.isLoggedIn(req) || uService.isAdmin(req)) {
+			Queue queue = QueueFactory.getQueue("add-user");
+			queue.add(TaskOptions.Builder.withUrl("/register")
+					.param("firstname", req.getParameter("firstname"))
+					.param("lastname", req.getParameter("lastname"))
+					.param("username", req.getParameter("username"))
+					.param("birthday", req.getParameter("birthday"))
+					.param("mail", req.getParameter("mail"))
+					.param("pass", req.getParameter("pass"))
+					.param("repass", req.getParameter("repass"))
+					.param("queue", "1"));
+			resp.sendRedirect("/auth/register-ok.jsp");
+		}
+	}
 }
