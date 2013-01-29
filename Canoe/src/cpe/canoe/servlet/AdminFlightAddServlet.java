@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
+
 import cpe.canoe.model.Flight;
 import cpe.canoe.model.IEntity;
 import cpe.canoe.services.FlightService;
@@ -25,9 +30,11 @@ public class AdminFlightAddServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -8398873930457816961L;
 	private UserService uService;
+	private FlightService fService;
 
 	public AdminFlightAddServlet() {
 		uService = new UserService();
+		fService = new FlightService();
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -57,7 +64,6 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 			dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
 
-			FlightService flightService = new cpe.canoe.services.FlightService();
 			SimpleDateFormat parseDateDepart = new java.text.SimpleDateFormat(
 					"dd/MM/yyyy HH:mm");
 			SimpleDateFormat parseDateArrivee = new java.text.SimpleDateFormat(
@@ -82,11 +88,30 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 			Flight flight = new Flight(dateDepart, dateArrivee, from, to,
 					price, availableSeats);
-			flightService.add(flight);
+			
+			if( req.getParameter("queue") == "1" ) {
+				System.out.println("Add Flight");
+				fService.add(flight);
+			}
+			else{
+				Queue queue = QueueFactory.getQueue("add-flight");
+		        queue.add(TaskOptions.Builder.withUrl("/admin/flight-add")
+		        		.param("departing", req.getParameter("departing"))
+		        		.param("arrivalTime", req.getParameter("departing"))
+		        		.param("leavingFrom", req.getParameter("leavingFrom"))
+		        		.param("goingTo", req.getParameter("goingTo"))
+		        		.param("price", req.getParameter("price"))
+		        		.param("availableSeats", req.getParameter("availableSeats"))
+		        		.param("queue", "1"));
+			}
+		
 			addFlightAttributes(req);
-			resp.sendRedirect("/admin/flight-add");
-		} else
+			resp.sendRedirect("/admin/flight-add");       
+		}       
+		else
+		{
 			resp.sendRedirect("/auth/login.jsp");
+		}
 	}
 	
 	private void addFlightAttributes(HttpServletRequest req)

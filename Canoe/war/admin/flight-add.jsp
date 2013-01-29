@@ -47,9 +47,9 @@
 					</div>
 				</div>
 				<div class="span3">
-					<div class="control-group">
-						<input type="submit" id="add" value="Add">
-					</div>
+					<button type="submit" class="btn btn-success">
+						  <i class="icon-ok">Ajouter ce vol</i>
+					</button>
 				</div>
 			</div>
 		</form>		
