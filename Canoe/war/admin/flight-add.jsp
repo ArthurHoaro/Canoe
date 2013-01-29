@@ -89,9 +89,9 @@
 						${ flight.price }
 					</TD>
 					<TD>
-						<input type="submit">
-							<i class="icon-remove"></i>
-						</input>
+						<button type="submit" class="btn btn-danger">
+						  <i class="icon-remove"></i>
+						</button>
 					</TD>
 				</TR>
    			</c:forEach>
