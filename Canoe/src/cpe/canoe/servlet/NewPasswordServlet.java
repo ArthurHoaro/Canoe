@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import cpe.canoe.model.User;
 import cpe.canoe.services.UserService;
 
-public class LoginServlet extends HttpServlet {
+public class NewPasswordServlet extends HttpServlet {
 	
 	/**
 	 * 
@@ -19,7 +19,12 @@ public class LoginServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-
+		try {
+			req.getRequestDispatcher("/auth/newPassword.jsp").forward(req, resp);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -28,25 +33,18 @@ public class LoginServlet extends HttpServlet {
 		
 		UserService userService = new cpe.canoe.services.UserService();
 		User usr=
-		userService.getUser(req.getParameter("username"), req.getParameter("pass"));
-		if(usr!=null){
-			HttpSession session= req.getSession();
-			session.setAttribute("User", usr);
-			if(usr.getLastLoginDate().equals(usr.getRegisterDate())){				
-				resp.sendRedirect("/auth/newpassword");
-			}
-			else{
-				userService.updateSessionDate(usr);
+			(User) req.getSession().getAttribute("User");
+		String pass = req.getParameter("pass");
+		String repass = req.getParameter("repass");
+		if(pass.equals(repass)){
+			if(usr!=null){
+				usr.setPassword(pass);
+				userService.updateUser(usr);
+				userService.updateSessionDate(usr);				
 				resp.sendRedirect("/user/user.jsp");
-			}
+			}	
 		}
-		
-		else{
-			error=new String("Le systeme n'a pas reussi à vous logger");		
-			req.setAttribute("error", error);
-			req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
-		}
-		
+			
 
 	}
 
