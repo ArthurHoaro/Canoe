@@ -57,6 +57,7 @@ public class FlightService extends Service {
         finalEntity.setProperty("from", orm.getFrom());
         finalEntity.setProperty("to", orm.getTo());
         finalEntity.setProperty("price", orm.getPrice());
+        finalEntity.setProperty("duration", orm.getDuration());
         finalEntity.setProperty("availableSeats", orm.getAvailableSeats());
         
 		return finalEntity;
