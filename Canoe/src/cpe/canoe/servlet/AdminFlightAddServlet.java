@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sun.util.logging.resources.logging;
+
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
+
 import cpe.canoe.model.Flight;
 import cpe.canoe.model.IEntity;
 import cpe.canoe.services.FlightService;
@@ -25,9 +32,11 @@ public class AdminFlightAddServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -8398873930457816961L;
 	private UserService uService;
+	private FlightService fService;
 
 	public AdminFlightAddServlet() {
 		uService = new UserService();
+		fService = new FlightService();
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -36,6 +45,37 @@ public class AdminFlightAddServlet extends HttpServlet {
 			RequestDispatcher dispatcher = null;
 
 			dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
+			
+			if( req.getParameter("queue") == "1" ) {
+				SimpleDateFormat parseDateDepart = new java.text.SimpleDateFormat(
+						"dd/MM/yyyy HH:mm");
+				SimpleDateFormat parseDateArrivee = new java.text.SimpleDateFormat(
+						"dd/MM/yyyy HH:mm");
+				Date dateDepart = null;
+				Date dateArrivee = null;
+				try {
+					dateDepart = parseDateDepart.parse(req
+							.getParameter("departing"));
+					dateArrivee = parseDateArrivee.parse(req
+							.getParameter("arrivalTime"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				String from = req.getParameter("leavingFrom");
+				String to = req.getParameter("goingTo");
+				float price = Float.parseFloat(req.getParameter("price"));
+				int availableSeats = Integer.parseInt(req
+						.getParameter("availableSeats"));
+	
+				Flight flight = new Flight(dateDepart, dateArrivee, from, to,
+						price, availableSeats);
+			
+			
+				System.out.println("Add Flight");
+				fService.add(flight);
+			}
 
 			addFlightAttributes(req);
 			
@@ -57,7 +97,6 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 			dispatcher = req.getRequestDispatcher("/admin/flight-add.jsp");
 
-			FlightService flightService = new cpe.canoe.services.FlightService();
 			SimpleDateFormat parseDateDepart = new java.text.SimpleDateFormat(
 					"dd/MM/yyyy HH:mm");
 			SimpleDateFormat parseDateArrivee = new java.text.SimpleDateFormat(
@@ -82,11 +121,30 @@ public class AdminFlightAddServlet extends HttpServlet {
 
 			Flight flight = new Flight(dateDepart, dateArrivee, from, to,
 					price, availableSeats);
-			flightService.add(flight);
+			
+			if( req.getParameter("queue") == "1" ) {
+				System.out.println("Add Flight");
+				fService.add(flight);
+			}
+			else{
+				Queue queue = QueueFactory.getQueue("add-flight");
+		        queue.add(TaskOptions.Builder.withUrl("/admin/flight-add")
+		        		.param("departing", req.getParameter("departing"))
+		        		.param("arrivalTime", req.getParameter("departing"))
+		        		.param("leavingFrom", req.getParameter("leavingFrom"))
+		        		.param("goingTo", req.getParameter("goingTo"))
+		        		.param("price", req.getParameter("price"))
+		        		.param("availableSeats", req.getParameter("availableSeats"))
+		        		.param("queue", "1"));
+			}
+		
 			addFlightAttributes(req);
-			resp.sendRedirect("/admin/flight-add");
-		} else
+			resp.sendRedirect("/admin/flight-add");       
+		}       
+		else
+		{
 			resp.sendRedirect("/auth/login.jsp");
+		}
 	}
 	
 	private void addFlightAttributes(HttpServletRequest req)

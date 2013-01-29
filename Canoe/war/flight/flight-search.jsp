@@ -10,7 +10,7 @@
 
 	<!-- Onglet Ajout ou Recherche -->
 	<ul class="nav nav-tabs">
-		<c:if test="${admin}">
+		<c:if test="${User.admin}">
 			<li><a href="/admin/flight-add">Ajout</a></li>
 		</c:if>
 		<!-- Zone de recherche d'un vol -->
@@ -73,8 +73,9 @@
 	</form>
 
 	<hr />
+	<div class="Well" id="goTable">
 	<h3>From ${from} to ${to} </h3>
-	<div class="Well">
+	
 		<table class="table table-striped table-bordered table-hover">
 			<THEAD>
 				<tr>
@@ -89,8 +90,9 @@
 			</THEAD>
 			<TBODY>
 				<c:forEach var="entry" items="${departs}">
-					<tr>
-						<td>${entry.dateDepart }</td>
+					<tr class="entryFirstTable">
+						<fmt:formatDate value="${entry.duration}" pattern="dd/MM/yy HH:mm" var="fDate2" />
+						<td>${fDate2 }</td>
 						<td>${entry.from }</td>
 						<td>${entry.to }</td>
 												
@@ -99,7 +101,7 @@
 							${duration }
 						</td>
 						<td>${entry.availableSeats }</td>
-						<td>${entry.price }</td>
+						<td>${entry.price } €</td>
 						<td><a href="/flight/flight-reserve?flightId=${entry.key}" class="btn btn-info"><i class="icon-plane icon-white"></i> Reserve</a></td>
 					</tr>
 				</c:forEach>
@@ -107,50 +109,57 @@
 		</table>
 	</div>
 	<!-- RETURN -->
-	<h3>Return ==> From ${to} to ${from}</h3>
-	<div class="Well">
-		<table class="table table-striped table-bordered tabel-hover">
-			<THEAD>
-				<tr>
-					<th>Date</th>
-					<th>Departure Town</th>
-					<th>Arrival Town</th>
-					<th>Flight duration</th>
-					<th>Available seats</th>
-					<th>Price</th>
-					<th>Book</th>						
-				</tr>
-			</THEAD>
-			<TBODY>
-				<c:forEach var="entry" items="${requestScope['returns']}">
+	<div id="returnTable">
+		<h3>Return <i class="icon-play"></i><i class="icon-play"></i> From ${to} to ${from}</h3>
+		<div class="Well">
+			<table class="table table-striped table-bordered tabel-hover">
+				<THEAD>
 					<tr>
-						<td>${entry.dateDepart }</td>
-						<td>${entry.from }</td>
-						<td>${entry.to }</td>
-						<td>
-							<fmt:formatDate value="${entry.duration}" pattern="dd' jours et' HH'h'mm" var="duration" />
-							${duration}
-						</td>
-						<td>${entry.availableSeats }</td>
-						<td>${entry.price }</td>
-						<td>
-							<c:if test="${isReturn}">					
-								<a href="#" class="btn btn-info"><i class="icon-plane icon-white"></i> Reserve</a>
-							</c:if>
-						</td>
+						<th>Date</th>
+						<th>Departure Town</th>
+						<th>Arrival Town</th>
+						<th>Flight duration</th>
+						<th>Available seats</th>
+						<th>Price</th>
+						<th>Book</th>						
 					</tr>
-				</c:forEach>
-			</TBODY>
-		</table>
+				</THEAD>
+				<TBODY>
+					<c:forEach var="entry" items="${requestScope['returns']}">
+						<tr>
+							<fmt:formatDate value="${entry.duration}" pattern="dd/MM/yy HH:mm" var="fDate1" />
+							<td>${fDate1 }</td>
+							<td>${entry.from }</td>
+							<td>${entry.to }</td>
+							<td>
+								<fmt:formatDate value="${entry.duration}" pattern="dd' jours et' HH'h'mm" var="duration" />
+								${duration}
+							</td>
+							<td>${entry.availableSeats }</td>
+							<td>${entry.price } €</td>
+							<td>
+								<c:if test="${isReturn}">					
+									<a href="#" class="btn btn-info"><i class="icon-plane icon-white"></i> Reserve</a>
+								</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</TBODY>
+			</table>
+		</div>
 	</div>
 	<script>
 		$(document).ready(function() {
 			$(".datepicker").datepicker();
-			$("#returnDate").hide();
+			$("#returnDate").hide();			
+			if( $(".entryFirstTable").length < 1 ) {
+				$("#goTable").hide();
+				$("#returnTable").hide();
+			}
 		});
 
 		function test() {
-			$("#returnDate").toggle();
+			$("#returnDate").toggle();			
 		}
 	</script>
 </z:layout>

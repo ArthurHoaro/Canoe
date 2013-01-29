@@ -47,9 +47,9 @@
 					</div>
 				</div>
 				<div class="span3">
-					<div class="control-group">
-						<input type="submit" id="add" value="Add">
-					</div>
+					<button type="submit" class="btn btn-success">
+						  <i class="icon-ok">Ajouter ce vol</i>
+					</button>
 				</div>
 			</div>
 		</form>		
@@ -84,14 +84,14 @@
 						${flight.to}
 					</TD>
 					<TD>
-						<fmt:formatDate value="${flight.duration}" pattern="HH'h'mm" var="duration" />
+						<fmt:formatDate value="${flight.duration}" pattern="HH:mm" var="duration" />
 						${ duration }
 					</TD>
 					<TD>
 						${ flight.availableSeats }
 					</TD>
 					<TD>
-						${ flight.price }
+						${ flight.price } €
 					</TD>
 					<TD>
 						

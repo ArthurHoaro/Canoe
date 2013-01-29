@@ -120,6 +120,7 @@ public class AdminFlightSearchServlet extends HttpServlet {
 		for( i = 0 ; i < response.size() ; ++i ) {
 			out += response.get(i).getPrice();
 		}
-		return out / i; 
+		
+		return i == 0 ? 0 : out / i; 
 	}
 }
