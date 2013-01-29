@@ -38,20 +38,32 @@ public class RegisterServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		
+		if (!uService.isLoggedIn(req) || uService.isAdmin(req)) {
+			Queue queue = QueueFactory.getQueue("add-user");
+			queue.add(TaskOptions.Builder.withUrl("/admin/user-add")
+					.param("firstname", req.getParameter("firstname"))
+					.param("lastname", req.getParameter("lastname"))
+					.param("username", req.getParameter("username"))
+					.param("birthday", req.getParameter("birthday"))
+					.param("mail", req.getParameter("mail"))
+					.param("pass", req.getParameter("pass"))
+					.param("repass", req.getParameter("repass"))
+					.param("queue", "1"));
+			resp.sendRedirect("/auth/register-ok.jsp");
+		}
+		else 
+			resp.sendRedirect("/auth/register.jsp?error");
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
 		if (!uService.isLoggedIn(req) || uService.isAdmin(req)) {
 			Queue queue = QueueFactory.getQueue("add-user");
-			queue.add(TaskOptions.Builder.withUrl("/admin/user-adds")
+			queue.add(TaskOptions.Builder.withUrl("/admin/user-add")
 					.param("firstname", req.getParameter("firstname"))
 					.param("lastname", req.getParameter("lastname"))
 					.param("username", req.getParameter("username"))
-					.param("birthday", req.getParameter("birthday"))
 					.param("mail", req.getParameter("mail"))
 					.param("pass", req.getParameter("pass"))
 					.param("repass", req.getParameter("repass"))
