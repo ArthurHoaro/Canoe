@@ -25,6 +25,7 @@ public class History implements IEntity {
 	private String to;
 	private int nbResponse;
 	private User user;
+	private long avgPrice;
 	
 	
 	/**
@@ -49,6 +50,7 @@ public class History implements IEntity {
 		this.departure = (Date) e.getProperty("departure");
 		this.nbResponse = (Integer) e.getProperty("nbResponse");
 		this.user = (User) e.getProperty("user");
+		this.avgPrice = (Long) e.getProperty("avgPrice");
 	}
 
 	/**
@@ -140,6 +142,20 @@ public class History implements IEntity {
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	/**
+	 * @return the avgPrice
+	 */
+	public long getAvgPrice() {
+		return avgPrice;
+	}
+
+	/**
+	 * @param avgPrice the avgPrice to set
+	 */
+	public void setAvgPrice(long avgPrice) {
+		this.avgPrice = avgPrice;
 	}
 	
 	
