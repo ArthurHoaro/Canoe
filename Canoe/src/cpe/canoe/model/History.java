@@ -32,6 +32,10 @@ public class History implements IEntity {
 	/**
 	 * 
 	 */
+	public History() {
+	
+	}
+	
 	public History(Entity e) {
 		this.init(e);
 	}
