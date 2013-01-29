@@ -5,9 +5,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <z:layout pageTitle="Gestion des vols">
+	<h1>Historique de recherche</h1>
+	<hr />
+
 	<!-- Onglet Ajout ou Recherche -->
 	<ul class="nav nav-tabs">		
-		<c:if test="${admin}">
+		<c:if test="${User.admin}">
 			<li>
 				<a href="/admin/flight-add">Ajout</a>
 			</li>
@@ -36,6 +39,7 @@
    		<tbody>
    			<c:forEach var="histoEntry" items="${history}">
    				<tr>
+   					<td>Date</td>
    					<td>${histoEntry.from}</td>
    					<td>${histoEntry.to}</td>
    					<fmt:formatDate value="${histoEntry.departure}" pattern="dd/MM/yyyy" var="fDeparture" />

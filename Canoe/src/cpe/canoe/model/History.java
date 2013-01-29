@@ -20,11 +20,12 @@ public class History implements IEntity {
 	private static final long serialVersionUID = 5885431440899079021L;
 
 	private String key;
+	private Date date;
 	private Date departure;
 	private String from;
 	private String to;
 	private int nbResponse;
-	private User user;
+	private String userKey;
 	private long avgPrice;
 	
 	
@@ -41,26 +42,27 @@ public class History implements IEntity {
 	@Override
 	public void init(Entity e) {
 		this.key = KeyFactory.keyToString(e.getKey());
+		this.date = (Date) e.getProperty("departure");
 		this.from = (String) e.getProperty("from");
 		this.to = (String) e.getProperty("to");
 		this.departure = (Date) e.getProperty("departure");
 		this.nbResponse = (Integer) e.getProperty("nbResponse");
-		this.user = (User) e.getProperty("user");
+		this.userKey = (String) e.getProperty("user");
 		this.avgPrice = (Long) e.getProperty("avgPrice");
 	}
 
 	/**
 	 * @return the user
 	 */
-	public User getUser() {
-		return user;
+	public String getUser() {
+		return userKey;
 	}
 
 	/**
 	 * @param user the user to set
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(String userKey) {
+		this.userKey = userKey;
 	}
 
 	/**
@@ -96,6 +98,20 @@ public class History implements IEntity {
 	 */
 	public String getFrom() {
 		return from;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	/**
